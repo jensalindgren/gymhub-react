@@ -1,4 +1,6 @@
+// Styles
 import styles from "./App.module.css";
+// React and Router
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
 import Container from "react-bootstrap/Container";

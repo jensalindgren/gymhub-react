@@ -1,8 +1,13 @@
+// React and Router
 import React from 'react'
-import { Navbar, Container, Nav } from "react-bootstrap";
-import logo from "../assets/logo.png";
-import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
+// Components
+import { Navbar, Container, Nav } from "react-bootstrap";
+// Assets
+import logo from "../assets/logo.png";
+// Styles
+import styles from "../styles/NavBar.module.css";
+
 
 const NavBar = () => {
     return (
@@ -22,21 +27,21 @@ const NavBar = () => {
                 activeClassName={styles.Active}
                 to="/"
               >
-                <i className="fas fa-home"></i>Home
+                Home
               </NavLink>
               <NavLink
                 className={styles.NavLink}
                 activeClassName={styles.Active}
                 to="/signin"
               >
-                <i className="fas fa-sign-in-alt"></i>Sign in
+                Sign in
               </NavLink>
               <NavLink
                 to="/signup"
                 className={styles.NavLink}
                 activeClassName={styles.Active}
               >
-                <i className="fas fa-user-plus"></i>Sign up
+                Sign up
               </NavLink>
             </Nav>
           </Navbar.Collapse>
