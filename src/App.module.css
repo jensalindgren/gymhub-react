@@ -1,0 +1,45 @@
+.App {
+    font-family: 'Lato', sans-serif;
+    background-color: #3e40465d;
+    min-height: 100vh;
+}
+  
+* {
+    box-sizing: border-box;
+}
+
+.Main {
+    padding-top: 81px;
+}
+  
+a {
+    color: #555555;
+    transition: color ease-in-out 0.3s;
+}
+  
+a:hover {
+    text-decoration: none;
+}
+  
+a:hover i {
+    color: #3e4046;
+    transition: color ease-in-out 0.3s;
+}
+  
+i {
+    color: #cfced3;
+    font-size: 1rem;
+    padding: 5px;
+    vertical-align: middle;
+}
+  
+i:hover {
+    cursor: pointer;
+    transition: color ease-in-out 0.3s;
+    color: #3e4046;
+}
+
+.Logo {
+    cursor: pointer;
+}
+
