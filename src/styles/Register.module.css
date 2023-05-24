@@ -1,0 +1,79 @@
+.Row {
+    justify-content: center;
+    align-items: center;
+    height: calc(60vh - 81px);
+}
+
+.Input {
+    background: #ffffff;
+    border: 1px solid #f0f1f9;
+    box-sizing: border-box;
+    border-radius: 2px;
+    text-align: center;
+    padding: 10px;
+}
+  
+  
+.Link {
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    margin: auto;
+}
+  
+.Link:hover {
+    background-color: #ffffff;
+    text-decoration: none;
+}
+  
+.SignInCol {
+    height: 320px;
+}
+  
+.SignUpCol {
+    height: 375px;
+}
+
+.Content {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #3e4046;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    padding: 10;
+    object-fit: contain;
+}
+
+.button {
+    background-color: #3e4046;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    
+}
+
+.button:hover {
+    background-color: #555555;
+    cursor: pointer;
+}
