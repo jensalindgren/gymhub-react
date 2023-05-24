@@ -2,9 +2,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-// Components
-import "./index.css";
 import App from "./App";
+// Styles
+import "./index.css";
+// Web Vitals
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
