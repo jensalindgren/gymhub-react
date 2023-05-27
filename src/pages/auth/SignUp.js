@@ -7,9 +7,8 @@ import axios from "axios";
 import styles from "../../styles/SignUp.module.css";
 import btnStyles from "../../styles/Button.module.css";
 // Components
-import { Form, Button, Col, Row, Container, } from "react-bootstrap";
+import { Form, Button, Col, Row, Container, Alert } from "react-bootstrap";
 // Notifications
-import Alert from 'react-bootstrap/Alert';
 import { NotificationManager } from "react-notifications";
 
 /**
@@ -60,8 +59,7 @@ const SignUpForm = () => {
       NotificationManager.success("Account created successfully", "Success!");
     } catch (err) {
       setErrors(err.response?.data);
-
-
+      NotificationManager.error("There was an issue signing you up", "Error");
     }
   };
 
