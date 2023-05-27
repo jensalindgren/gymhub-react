@@ -16,7 +16,7 @@ import { NotificationManager } from "react-notifications";
  * @component
  */
 
-const SignUpForm = () => {
+const SignUp = () => {
 
   /**
    * Initialize the signInData object
@@ -148,4 +148,4 @@ const SignUpForm = () => {
     );
 };
   
-export default SignUpForm;
+export default SignUp;
