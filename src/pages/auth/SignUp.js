@@ -15,7 +15,8 @@ import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 // Hooks
 import { useRedirect } from "../../hooks/useRedirect";
-
+// Notifications
+import { NotificationManager } from "react-notifications";
 
 
 /**
@@ -48,8 +49,10 @@ const SignUp = () => {
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
       history.push("/signin");
+      NotificationManager.success("Account created successfully", "Success!");
     } catch (err) {
       setErrors(err.response?.data);
+      NotificationManager.error("There was an issue signing you up", "Error");
     }
   };
 
