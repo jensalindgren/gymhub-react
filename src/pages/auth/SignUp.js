@@ -13,8 +13,10 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-// Notifications
-import { NotificationManager } from "react-notifications";
+// Hooks
+import { useRedirect } from "../../hooks/useRedirect";
+
+
 
 /**
  * User registration page
@@ -22,54 +24,37 @@ import { NotificationManager } from "react-notifications";
  */
 
 const SignUp = () => {
-
-  /**
-   * Initialize the signInData object
-   */
+  useRedirect("loggedIn");
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
     password2: "",
   });
-
-  /**
-   * Destructure signUpData
-   */
   const { username, password1, password2 } = signUpData;
 
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
-  /**
-   * Function to allow users to edit the input fields
-   * and updates the signInData object
-   */
 
   const handleChange = (event) => {
-      setSignUpData({
-        ...signUpData,
-        [event.target.name]: event.target.value,
-      });
+    setSignUpData({
+      ...signUpData,
+      [event.target.name]: event.target.value,
+    });
   };
-
-  /**
-   * Function to handle form submission
-   */
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
       history.push("/signin");
-      NotificationManager.success("Account created successfully", "Success!");
     } catch (err) {
       setErrors(err.response?.data);
-      NotificationManager.error("There was an issue signing you up", "Error");
     }
   };
 
-    return (
-      <Row className={styles.Row}>
+  return (
+    <Row className={styles.Row}>
       <Col className="my-auto py-2 p-md-2" md={6}>
         <Container className={`${styles.Content} p-4 `}>
           <h1 className={styles.Header}>sign up</h1>
@@ -127,7 +112,7 @@ const SignUp = () => {
             ))}
 
             <Button
-              className={`${btnStyles.button} ${btnStyles.Wide}`}
+              className={`${btnStyles.Button} ${btnStyles.Wide}`}
               type="submit"
             >
               Sign up
