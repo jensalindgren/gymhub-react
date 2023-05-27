@@ -9,8 +9,7 @@ import btnStyles from "../../styles/Button.module.css";
 // Components
 import { Form, Button, Col, Row, Container, Alert } from "react-bootstrap";
 
-// Notifications
-import { NotificationManager } from "react-notifications";
+
 
 /**
  * User registration page
@@ -32,7 +31,9 @@ const SignUpForm = () => {
    * Destructure signUpData
    */
   const { username, password1, password2 } = signUpData;
+
   const [errors, setErrors] = useState({});
+
   const history = useHistory();
   /**
    * Function to allow users to edit the input fields
@@ -51,16 +52,15 @@ const SignUpForm = () => {
    */
 
   const handleSubmit = async (event) => {
-      event.preventDefault();
-      try {
-        await axios.post("/dj-rest-auth/registration/", signUpData);
-        history.push("/signin");
-        NotificationManager.success("Account created successfully", "Success!");
-      } catch (error) {
-        setErrors(error.response?.data);
-        NotificationManager.error("There was an issue signing you up", "Error");
-      }
+    event.preventDefault();
+    try {
+      await axios.post("/dj-rest-auth/registration/", signUpData);
+      history.push("/signin");
+    } catch (err) {
+      setErrors(err.response?.data);
+    }
   };
+
     return (
       <Row className={styles.Row}>
         <Col className="my-auto py-2 p-md-2" md={6}>
