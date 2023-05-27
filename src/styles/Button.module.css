@@ -1,0 +1,21 @@
+.Wide {
+    padding: 10px 50px;
+    width: 100%;
+  }
+
+.button {
+    background-color: #3e40469d;
+    border: none;
+    color: white;
+    padding: 10px 20px 10px 2;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    
+}
+
+.button:hover {
+    background-color: #555555;
+    cursor: pointer;
+}

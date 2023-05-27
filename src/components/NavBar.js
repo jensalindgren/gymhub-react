@@ -8,7 +8,7 @@ import logo from "../assets/logo.png";
 // Styles
 import styles from "../styles/NavBar.module.css";
 // Notifications
-import { NotificationManager } from "react-notifications";
+
 
 const NavBar = () => {
     return (
