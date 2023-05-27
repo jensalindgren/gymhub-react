@@ -65,17 +65,11 @@ const SignUp = () => {
 
     return (
       <Row className={styles.Row}>
-        <Col className="my-auto py-2 p-md-2" md={6}>
-          <Container className={`${styles.Content} p-4 `}>
-            <h1 >Register Account</h1>
+      <Col className="my-auto py-2 p-md-2" md={6}>
+        <Container className={`${styles.Content} p-4 `}>
+          <h1 className={styles.Header}>sign up</h1>
 
-            {errors.username?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
-
-            <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">username</Form.Label>
               <Form.Control
@@ -87,6 +81,11 @@ const SignUp = () => {
                 onChange={handleChange}
               />
             </Form.Group>
+            {errors.username?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
 
             <Form.Group controlId="password1">
               <Form.Label className="d-none">Password</Form.Label>
@@ -99,7 +98,6 @@ const SignUp = () => {
                 onChange={handleChange}
               />
             </Form.Group>
-            
             {errors.password1?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
@@ -117,7 +115,6 @@ const SignUp = () => {
                 onChange={handleChange}
               />
             </Form.Group>
-
             {errors.password2?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
@@ -125,23 +122,24 @@ const SignUp = () => {
             ))}
 
             <Button
-              className={`${btnStyles.button} ${btnStyles.Wide}`}
+              className={`${btnStyles.Button} ${btnStyles.Wide}`}
               type="submit"
             >
               Sign up
             </Button>
-
             {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
                 {message}
               </Alert>
             ))}
+          </Form>
+        </Container>
 
-            </Form>
-          </Container>
-          <Container className={`mt-3 ${styles.Content}`}>
-            <Link className={styles.Link}  to="/signin">Already have an account? <span>Sign in</span></Link>
-          </Container>
+        <Container className={`mt-3 ${styles.Content}`}>
+          <Link className={styles.Link} to="/signin">
+            Already have an account? <span>Sign in</span>
+          </Link>
+        </Container>
 
         </Col>
       </Row>
