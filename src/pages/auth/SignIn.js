@@ -62,7 +62,7 @@ function SignIn() {
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
-      history.push("/");
+      history.push("/home");
       NotificationManager.success(
         "Welcome " + username + ". You are now signed in",
         "Success!"
@@ -75,8 +75,8 @@ function SignIn() {
 
   return (
     <Row className={styles.Row}>
-      <Col className="my-auto p-0 p-md-2" md={6}>
-        <Container className={`${styles.Content} p-4 `}>
+      <Col className="my-auto p-2 p-md-2" md={6}>
+        <Container className={`${styles.Content} p-6 `}>
           <h1 className={styles.Header}>sign in</h1>
 
           <Form onSubmit={handleSubmit}>

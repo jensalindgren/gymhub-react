@@ -9,7 +9,7 @@ import SignUp from "./pages/auth/SignUp";
 import SignIn from "./pages/auth/SignIn";
 import Container from "react-bootstrap/Container";
 import PageNotFound from "./components/PageNotFound";
-import GymHubPage from "./gymhub/GymHubPage";
+import GymHubPage from "./pages/gymhub/GymHubPage";
 // API
 import './api/axiosDefaults';
 // Notifications
@@ -22,7 +22,7 @@ function App() {
   let gymPage = true;
   let mainSite = false;
 
-  if (location.pathname === "/gymhub") {
+  if (location.pathname === "/") {
     gymPage = true;
     mainSite = false;
   } else {
@@ -33,10 +33,14 @@ function App() {
   return (
   <div className={styles.App}>
     {gymPage && (
+      <>
+      <NavBar />
+      <NotificationContainer />
       <Switch>
-        <Route exact path="/signin" render={() => <SignIn/>} />
-        <Route exact path="/gymhub" render={() => <GymHubPage />} />
+        <Route exact path="/" render={() => <GymHubPage />} />
       </Switch>
+      <Footer />
+      </>
     )}
     {mainSite && (
       <>
@@ -44,7 +48,7 @@ function App() {
       <NotificationContainer />
       <Container className={styles.Main}>
         <Switch>
-          <Route exact path="/" render={() => <h1>Home page</h1>} />
+          <Route exact path="/home" render={() => <h1>Home page</h1>} />
           <Route exact path="/signin" render={() => <SignIn/>} />
           <Route exact path="/signup" render={() => <SignUp/>} />
           <Route render={() => <p>Page not found!</p>} />

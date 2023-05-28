@@ -1,6 +1,6 @@
 // React and Router
 import React from 'react'
-import { NavLink} from "react-router-dom";
+import { NavLink, useState, useHistory} from "react-router-dom";
 // Components
 import { Navbar, Container, Nav, } from "react-bootstrap";
 // Context
@@ -27,7 +27,7 @@ const NavBar = () => {
   /**
    * You will see different icons depending on if the user is logged in or not
   */
-
+  const history = useHistory();
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
@@ -48,6 +48,26 @@ const NavBar = () => {
     }
   };
 
+  /**
+   * Logo function
+   * if the user is logged in, the logo will take them to the feed
+   * if the user is not logged in, the logo will take them to the landing page
+   */
+
+  const handleLogoClick = async () => {
+    if (currentUser) {
+      history.push("/feed");
+    } else {
+      history.push("/");
+  
+    const handleImageClick = () => {
+      if (isLoggedIn) {
+        history.push('/home');
+      } else {
+        history.push('/gymhub');
+      }
+    };
+  };
 
 
 
@@ -82,7 +102,7 @@ const NavBar = () => {
               </NavLink>
               <NavLink
                 className={styles.NavLink}
-                to="/home"
+                to="/"
                 onClick={handleSignOut}
               >
                 <i className={styles.i} class="fa-solid fa-user-slash"><span>Sign Out</span></i>
@@ -120,7 +140,7 @@ const NavBar = () => {
       <Navbar expanded={expanded} className={styles.NavBar} expand="md" fixed="top">
         <Container className={styles.Container}>
           <div className={`${styles.Block}`}>
-          <NavLink to="/">
+          <NavLink to="/home">
             <Navbar.Brand>
               <img src={logo} alt="logo" height="45" />
             </Navbar.Brand>
