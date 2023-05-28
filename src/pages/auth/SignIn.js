@@ -1,48 +1,70 @@
+// React and Router
+import { Link, useHistory } from "react-router-dom";
 import React, { useContext, useState } from "react";
+// API
 import axios from "axios";
-
+// Components
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
-import { Link, useHistory } from "react-router-dom";
-
+// Styles
 import styles from "../../styles/SignUp.module.css";
 import btnStyles from "../../styles/Button.module.css";
+// Contexts
 import { SetCurrentUserContext } from "../../App";
+// Notifications
+import { NotificationManager } from "react-notifications";
+
 
 function SignIn() {
   const setCurrentUser = useContext(SetCurrentUserContext);
+  const [errors, setErrors] = useState({});
+  const history = useHistory();
 
+  /**
+   * Initialize the signInData object
+   */
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
   });
+
+  /**
+   * Destructure signInData
+   */
   const { username, password } = signInData;
 
-  const [errors, setErrors] = useState({});
-
-  const history = useHistory();
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
-      setCurrentUser(data.user);
-      history.push("/");
-    } catch (err) {
-      setErrors(err.response?.data);
-    }
-  };
-
+  /**
+   * Function to allow users to edit the input fields
+   * and updates the signInData object
+   */
   const handleChange = (event) => {
     setSignInData({
       ...signInData,
       [event.target.name]: event.target.value,
     });
+  };
+
+  /**
+   * Function to handle form submission
+   */
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      setCurrentUser(data.user);
+      history.push("/home");
+      NotificationManager.success(
+        "Welcome " + username + ". You are now signed in",
+        "Success!"
+      );
+    } catch (error) {
+      setErrors(error.response?.data);
+      NotificationManager.error("There was an issue logging you in", "Error");
+    }
   };
 
   return (
