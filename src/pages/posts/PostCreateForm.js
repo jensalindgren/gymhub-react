@@ -5,6 +5,8 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
+import Card from 'react-bootstrap/Card';
+import Row from "react-bootstrap/Row";
 // Components
 import Asset from "../../components/Asset";
 // Assets
@@ -13,7 +15,7 @@ import Upload from "../../assets/upload.png";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import Card from 'react-bootstrap/Card';
+
 // Hooks
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -100,22 +102,16 @@ function PostCreateForm() {
         </Alert>
       ))}
 
-      <Button
-        className={`${styles.button}`}
-        onClick={() => history.goBack()}
-      >
-        cancel
-      </Button>
-      <Button className={`${styles.button} `} type="submit">
+      <Button className={`${btnStyles.button} `} type="submit">
         create
       </Button>
     </div>
   );
 
   return (
-  <Form onSubmit={handleSubmit}>
-    <Card className="text-center">
-          <Card.Body>
+  <Form className={styles.CardBody} onSubmit={handleSubmit}>
+   <Row className={`${styles.FormBody} text-center my-auto py-2 p-md-2`}>
+          <Card.Body >
             {image ? (
                 <>
                   <figure>
@@ -157,10 +153,9 @@ function PostCreateForm() {
               </Alert>
             ))}
 
-
+        <Card.Footer className={styles.CardFooter}>{textFields}</Card.Footer>
         </Card.Body>
-        <Card.Footer className="text-muted">{textFields}</Card.Footer>
-    </Card>
+        </Row>
 
     </Form>
   );
