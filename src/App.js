@@ -13,6 +13,7 @@ import './api/axiosDefaults';
 // Notifications
 import { NotificationContainer } from "react-notifications";
 import "react-notifications/lib/notifications.css";
+// API
 import axios from "axios";
 
 import { createContext, useEffect, useState } from "react";

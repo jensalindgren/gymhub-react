@@ -1,3 +1,4 @@
+// React and Router
 import React from 'react'
 import styles from "../styles/Footer.module.css";
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
