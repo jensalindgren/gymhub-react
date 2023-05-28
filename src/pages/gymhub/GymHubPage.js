@@ -14,12 +14,12 @@ import btnStyles from "../../styles/Button.module.css";
 
 const GymHubPage = () => {
     return (
-      
+
         <Row className={styles.Row}>
         <Col className="my-auto p-2 p-md-2" md={6}>
           <Container className={`${styles.Content} p-6 `}>
             <h1 className={styles.Header}>Gym Hub</h1>
-            <Link className={styles.Link} to="/signup">
+            <Link className={styles.Link} to="/signin">
               <Button className={`${btnStyles.button} ${btnStyles.Large}`}>Sign in</Button>
             </Link>
             </Container>

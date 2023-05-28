@@ -1,6 +1,6 @@
 // React and Router
 import React from 'react'
-import { NavLink, useState, useHistory} from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 // Components
 import { Navbar, Container, Nav, } from "react-bootstrap";
 // Context
@@ -24,6 +24,7 @@ import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
  */
 
 const NavBar = () => {
+
   /**
    * You will see different icons depending on if the user is logged in or not
   */
@@ -50,25 +51,23 @@ const NavBar = () => {
 
   /**
    * Logo function
-   * if the user is logged in, the logo will take them to the feed
+   * if the user is logged in, the logo will take them to the home page
    * if the user is not logged in, the logo will take them to the landing page
    */
-
-  const handleLogoClick = async () => {
-    if (currentUser) {
-      history.push("/feed");
-    } else {
-      history.push("/");
-  
-    const handleImageClick = () => {
-      if (isLoggedIn) {
-        history.push('/home');
-      } else {
-        history.push('/gymhub');
+    const handleLogoClick = async () => {
+      try {
+        await axios.post("/dj-rest-auth/token/refresh/");
+        // if user is logged in, the code below will run
+        if (currentUser) {
+          history.push("/home");
+        }
+      } catch (err) {
+        // if user is not logged in, the code below will run
+        if (!currentUser) {
+          history.push("/");
+        }
       }
     };
-  };
-
 
 
   /** 
@@ -130,7 +129,7 @@ const NavBar = () => {
                 <i className={styles.i} class=" fa-solid fa-user-plus"><span>Register</span></i>
               </NavLink>
               </>
-)
+  )
 
     /**
      * Navbar
@@ -141,7 +140,7 @@ const NavBar = () => {
         <Container className={styles.Container}>
           <div className={`${styles.Block}`}>
           <NavLink to="/home">
-            <Navbar.Brand>
+            <Navbar.Brand onClick={handleLogoClick}>
               <img src={logo} alt="logo" height="45" />
             </Navbar.Brand>
           </NavLink>
