@@ -1,9 +1,10 @@
 .Footer {
     height: 100px;
-    background-color: #3e40465d;
+    background-color: #3e4046;
     width: 100%;
-    position: absolute;
+    left: 0;
     bottom: 0;
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;

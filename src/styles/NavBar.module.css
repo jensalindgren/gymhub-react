@@ -1,5 +1,5 @@
 .NavBar {
-  background-color: #3e404698;
+  background-color: #3e4046;
     align-items: center;
     display: flex;
   }
@@ -56,15 +56,13 @@
 }
 
 .Navbar.Collapse{
-  background-color: #3e404698;
+
   size: 1.5rem;
 }
 
 .Toggle {
-  border: none;
-  background-color: #3e404698;
+  border-color: #fff;
   text-align: center;
-  text-decoration: none;
   font-size: 20px;
 }
 

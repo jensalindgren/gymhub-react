@@ -11,12 +11,17 @@ import styles from "../../styles/SignUp.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 
-
+/**
+ * Gym Hub page
+ * @component
+ * 
+ */
+ 
 const GymHubPage = () => {
     return (
 
         <Row className={styles.Row}>
-        <Col className="my-auto p-2 p-md-2" md={6}>
+        <Col className="my-auto p-2 p-md-2" md={4}>
           <Container className={`${styles.Content} p-6 `}>
             <h1 className={styles.Header}>Gym Hub</h1>
             <Link className={styles.Link} to="/signin">

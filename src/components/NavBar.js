@@ -83,13 +83,13 @@ const NavBar = () => {
               </NavLink>
                 <NavLink
                 className={styles.NavLink}
-                to="/post/add"
+                to="/posts/create"
               >
                 <i className="fa-solid fa-plus-circle"><span>Post</span></i>
                </NavLink>
                <NavLink
                 className={styles.NavLink}
-                to="/post/add"
+                to="/post/events"
               >
                 <i className="fa-solid fa-bookmark"><span>Events</span></i>
                </NavLink>
