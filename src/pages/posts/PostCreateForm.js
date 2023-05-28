@@ -15,10 +15,15 @@ import Upload from "../../assets/upload.png";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
 // Hooks
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+
+/**
+ * Post create form
+ * @component
+ *  
+ */
 
 function PostCreateForm() {
   const [errors, setErrors] = useState({});
@@ -40,6 +45,10 @@ function PostCreateForm() {
     });
   };
 
+  /**
+   * Handle image change
+   */
+
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
@@ -49,6 +58,10 @@ function PostCreateForm() {
       });
     }
   };
+
+  /**
+   * Submit post function
+   */
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -68,6 +81,11 @@ function PostCreateForm() {
       }
     }
   };
+
+  /**
+   * Text fields
+   * 
+   */
 
   const textFields = (
     <div className="text-center">
