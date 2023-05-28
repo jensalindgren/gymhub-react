@@ -13,18 +13,6 @@
     padding: 10px;
 }
   
-.Link {
-    text-decoration: none;
-    text-align: center;
-    display: block;
-    margin: auto;
-}
-  
-.Link:hover {
-    background-color: #ffffff;
-    text-decoration: none;
-}
-  
 .SignInCol {
     height: 320px;
 }

@@ -1,5 +1,5 @@
 .NavBar {
-    background-color: #3e404698;
+  background-color: #3e404698;
     align-items: center;
     display: flex;
   }
@@ -12,7 +12,6 @@
 }
 
 .NavLink {
-    color: #cfced3;
     padding: 5px;
     transition: color ease-in-out 0.3s;
 }
@@ -21,18 +20,32 @@
     color: #fff;
 }
 
+.NavLink i {
+    color: #cfced3;
+    font-size: 0.9rem;
+    padding: 7px;
+    vertical-align: middle;
+    justify-content: center;
+}
+
+.NavLink i:hover {
+  color: #fff;
+}
+
+.NavLink i span {
+  font-family: 'lato';
+  font-size: 1.rem;
+  padding: 5px;
+  vertical-align: middle;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
 .Container {
   display: flex;
   justify-content: center;
   width: 100%;
 }
-
-.Center {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
 
 .Block {
   height: 50px;
@@ -40,4 +53,28 @@
 
 #basic-navbar-nav {
   padding: 10px;
+}
+
+.Navbar.Collapse{
+  background-color: #3e404698;
+  size: 1.5rem;
+}
+
+.Toggle {
+  border: none;
+  background-color: #3e404698;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.NavBar span {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.NavBar img {
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0px 8px 0px 0px;
 }

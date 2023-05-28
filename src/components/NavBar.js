@@ -1,14 +1,22 @@
 // React and Router
-import React from 'react'
+import React, { useRef, useState} from 'react'
 import { NavLink } from "react-router-dom";
 // Components
 import { Navbar, Container, Nav, } from "react-bootstrap";
 // Context
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 // Assets
 import logo from "../assets/logo.png";
 // Styles
 import styles from "../styles/NavBar.module.css";
+// Profile
+import Profile from './Profile';
+// Axios
+import axios from 'axios';
+// Notifications
+import { NotificationManager } from "react-notifications";
+// Hooks
+import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 /**
  * User Navbar page
@@ -18,32 +26,97 @@ import styles from "../styles/NavBar.module.css";
 const NavBar = () => {
 
   /**
-   * Logged in and Out icons
    * You will see different icons depending on if the user is logged in or not
   */
 
   const currentUser = useCurrentUser();
-  const loggedInIcons = <>{currentUser?.username}</>
-  const loggedOutIcons = 
+  const setCurrentUser = useSetCurrentUser();
+
+  const { expanded, setExpanded, ref } = useClickOutsideToggle();
+
+  /**
+   * Sign out function
+   */
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setCurrentUser(null);
+      NotificationManager.success("Signed out successfully", "Success!");
+    } catch (err) {
+      console.log(err);
+      NotificationManager.error("There was an issue signing you out", "Error");
+    }
+  };
+
+
+  /** 
+   * Logged in and Out icons
+  */
+  
+  const loggedInIcons = <>
+                <NavLink
+                className={styles.NavLink}
+                to="/feed"
+              >
+                <i className={styles.i} class="fa-solid fa-hashtag"><span>Feed</span></i>
+              </NavLink>
+                <NavLink
+                className={styles.NavLink}
+                to="/post/add"
+              >
+                <i className="fa-solid fa-plus-circle"><span>Post</span></i>
+               </NavLink>
+               <NavLink
+                className={styles.NavLink}
+                to="/post/add"
+              >
+                <i className="fa-solid fa-bookmark"><span>Events</span></i>
+               </NavLink>
+              <NavLink
+                className={styles.NavLink}
+                to="/likes"
+              >
+                <i className={styles.i} class="fa-solid fa-heart"><span>Likes</span></i>
+              </NavLink>
+              <NavLink
+                className={styles.NavLink}
+                to="/"
+                onClick={handleSignOut}
+              >
+                <i className={styles.i} class="fa-solid fa-user-slash"><span>Sign Out</span></i>
+              </NavLink>
+              <NavLink
+                className={styles.NavLink}
+                to={`/profile/${currentUser?.profile_id}`}
+              >
+                <Profile src={currentUser?.profile_image} text={currentUser?.username}/>
+              </NavLink>
+              
+  </>
+  const loggedOutIcons = (
               <>
                 <NavLink
                 className={styles.NavLink}
-                activeClassName={styles.Active}
                 to="/signin"
               >
-                Sign in
+              <i className={styles.i} class="fa-solid fa-user"><span>Sign in</span></i>
               </NavLink>
               <NavLink
                 to="/signup"
                 className={styles.NavLink}
-                activeClassName={styles.Active}
               >
-                Sign up
+                <i className={styles.i} class=" fa-solid fa-user-plus"><span>Register</span></i>
               </NavLink>
               </>
+)
+
+    /**
+     * Navbar
+     */ 
 
     return (
-      <Navbar className={styles.NavBar} expand="md" fixed="top">
+      <Navbar expanded={expanded} className={styles.NavBar} expand="md" fixed="top">
         <Container className={styles.Container}>
           <div className={`${styles.Block}`}>
           <NavLink to="/">
@@ -53,19 +126,15 @@ const NavBar = () => {
           </NavLink>
           </div>
           <div>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+          <Navbar.Toggle 
+          ref={ref}
+          onClick={() => setExpanded(!expanded)}
+           className={styles.Toggle} aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse  id="basic-navbar-nav">
             <Nav>
-              <NavLink
-                exact
-                className={styles.NavLink}
-                activeClassName={styles.Active}
-                to="/"
-              >
-                Home
-              </NavLink>
 
-              {currentUser ? loggedInIcons : loggedOutIcons}
+
+              {currentUser ? loggedInIcons : loggedOutIcons }
 
             </Nav>
           </Navbar.Collapse>

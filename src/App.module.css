@@ -16,33 +16,19 @@
     align-items: center;
 }
   
-a {
-    color: #555555;
-    transition: color ease-in-out 0.3s;
-}
-  
-a:hover {
-    text-decoration: none;
-}
-  
-a:hover i {
-    color: #3e4046;
-    transition: color ease-in-out 0.3s;
-}
-  
-i {
-    color: #cfced3;
-    font-size: 0,7rem;
-    padding: 7px;
-    vertical-align: middle;
-}
-  
-i:hover {
-    cursor: pointer;
-    transition: color ease-in-out 0.3s;
-    color: #3e4046;
-}
 
 .Brand {
     cursor: pointer;
+}
+
+.FillerImage {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+  
+.Image {
+    max-height: 40vh;
+    max-width: 100%;
+    object-fit: contain;
 }

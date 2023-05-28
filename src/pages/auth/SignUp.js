@@ -44,6 +44,11 @@ const SignUp = () => {
     });
   };
 
+  /**
+   * Sign up function
+   * 
+   */
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
