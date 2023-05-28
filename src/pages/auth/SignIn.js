@@ -72,6 +72,7 @@ function SignIn() {
       <Col className="my-auto p-0 p-md-2" md={6}>
         <Container className={`${styles.Content} p-4 `}>
           <h1 className={styles.Header}>sign in</h1>
+
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">Username</Form.Label>
@@ -84,6 +85,7 @@ function SignIn() {
                 onChange={handleChange}
               />
             </Form.Group>
+
             {errors.username?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
@@ -101,22 +103,26 @@ function SignIn() {
                 onChange={handleChange}
               />
             </Form.Group>
+
             {errors.password?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
             ))}
+
             <Button
               className={`${btnStyles.button} ${btnStyles.Wide}`}
               type="submit"
             >
               Sign in
             </Button>
+
             {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
                 {message}
               </Alert>
             ))}
+            
           </Form>
         </Container>
         <Container className={`mt-3 ${styles.Content}`}>
