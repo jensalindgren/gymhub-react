@@ -1,6 +1,6 @@
 // React and Router
-import React, { useRef, useState} from 'react'
-import { NavLink } from "react-router-dom";
+import React from 'react'
+import { NavLink} from "react-router-dom";
 // Components
 import { Navbar, Container, Nav, } from "react-bootstrap";
 // Context
@@ -24,7 +24,6 @@ import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
  */
 
 const NavBar = () => {
-
   /**
    * You will see different icons depending on if the user is logged in or not
   */
@@ -48,6 +47,8 @@ const NavBar = () => {
       NotificationManager.error("There was an issue signing you out", "Error");
     }
   };
+
+
 
 
   /** 
@@ -81,7 +82,7 @@ const NavBar = () => {
               </NavLink>
               <NavLink
                 className={styles.NavLink}
-                to="/"
+                to="/home"
                 onClick={handleSignOut}
               >
                 <i className={styles.i} class="fa-solid fa-user-slash"><span>Sign Out</span></i>
