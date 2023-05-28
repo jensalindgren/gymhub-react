@@ -1,7 +1,14 @@
 // React and Router
 import React from 'react'
 import styles from "../styles/Footer.module.css";
+// Components
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+
+
+/**
+ * User Footer page
+ * @component
+ */
 
 const Footer = () => {
   return (

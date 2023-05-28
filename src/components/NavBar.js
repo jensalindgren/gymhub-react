@@ -10,9 +10,18 @@ import logo from "../assets/logo.png";
 // Styles
 import styles from "../styles/NavBar.module.css";
 
-
+/**
+ * User Navbar page
+ * @component
+ */
 
 const NavBar = () => {
+
+  /**
+   * Logged in and Out icons
+   * You will see different icons depending on if the user is logged in or not
+  */
+
   const currentUser = useCurrentUser();
   const loggedInIcons = <>{currentUser?.username}</>
   const loggedOutIcons = 
@@ -55,6 +64,7 @@ const NavBar = () => {
               >
                 Home
               </NavLink>
+
               {currentUser ? loggedInIcons : loggedOutIcons}
 
             </Nav>

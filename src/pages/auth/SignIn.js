@@ -19,6 +19,12 @@ import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { NotificationManager } from "react-notifications";
 
 
+/**
+ * User sign in page
+ * @component
+ */
+
+
 function SignIn() {
   const setCurrentUser = useSetCurrentUser();
   const [errors, setErrors] = useState({});
@@ -56,7 +62,7 @@ function SignIn() {
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
-      history.push("/home");
+      history.push("/");
       NotificationManager.success(
         "Welcome " + username + ". You are now signed in",
         "Success!"
