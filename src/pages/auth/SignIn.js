@@ -1,6 +1,6 @@
 // React and Router
 import { Link, useHistory } from "react-router-dom";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 // API
 import axios from "axios";
 // Components
@@ -14,13 +14,13 @@ import Container from "react-bootstrap/Container";
 import styles from "../../styles/SignUp.module.css";
 import btnStyles from "../../styles/Button.module.css";
 // Contexts
-import { SetCurrentUserContext } from "../../App";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 // Notifications
 import { NotificationManager } from "react-notifications";
 
 
 function SignIn() {
-  const setCurrentUser = useContext(SetCurrentUserContext);
+  const setCurrentUser = useSetCurrentUser();
   const [errors, setErrors] = useState({});
   const history = useHistory();
 

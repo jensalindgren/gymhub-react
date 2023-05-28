@@ -1,19 +1,19 @@
 // React and Router
-import React, { useContext } from 'react'
+import React from 'react'
 import { NavLink } from "react-router-dom";
 // Components
 import { Navbar, Container, Nav, } from "react-bootstrap";
 // Context
-import { CurrentUserContext } from "../App";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 // Assets
 import logo from "../assets/logo.png";
 // Styles
 import styles from "../styles/NavBar.module.css";
-// Notifications
+
 
 
 const NavBar = () => {
-  const currentUser = useContext(CurrentUserContext);
+  const currentUser = useCurrentUser();
   const loggedInIcons = <>{currentUser?.username}</>
   const loggedOutIcons = 
               <>

@@ -7,11 +7,15 @@ import App from "./App";
 import "./index.css";
 // Web Vitals
 import reportWebVitals from "./reportWebVitals";
+// Context
+import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 
 ReactDOM.render(
 
     <Router>
+      <CurrentUserProvider>
       <App />
+      </CurrentUserProvider>
     </Router>,
 
   document.getElementById("root")
