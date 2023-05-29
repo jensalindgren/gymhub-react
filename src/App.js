@@ -15,6 +15,9 @@ import PostPage from "./pages/posts/PostPage";
 import PostList from "./pages/posts/PostList";
 import PostEditForm from "./pages/posts/PostEditForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
+import UsernameForm from "./pages/profiles/UsernameForm";
+import UserPasswordForm from "./pages/profiles/UserPasswordForm";
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 // API
 import './api/axiosDefaults';
 // Notifications
@@ -22,6 +25,7 @@ import { NotificationContainer } from "react-notifications";
 import "react-notifications/lib/notifications.css";
 // Context
 import { useCurrentUser } from "./contexts/CurrentUserContext";
+
 
 
 function App() {
@@ -105,6 +109,23 @@ function App() {
                   path="/profiles/:id"
                   render={() => <ProfilePage />}
                 />
+
+                  <Route
+                    exact
+                    path="/profiles/:id/edit/username"
+                    render={() => <UsernameForm />}
+                  />
+                  <Route
+                    exact
+                    path="/profiles/:id/edit/password"
+                    render={() => <UserPasswordForm />}
+                  />
+                  <Route
+                    exact
+                    path="/profiles/:id/edit"
+                    render={() => <ProfileEditForm />}
+                  />
+
                 <Route render={() => <PageNotFound />} />
               </Switch>
             </Container>
