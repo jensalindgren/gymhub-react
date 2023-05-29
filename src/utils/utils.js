@@ -1,4 +1,10 @@
+// Hook for fetching more data from API
 import { axiosReq } from "../api/axiosDefaults";
+
+/**
+ *  Fetches more data from API
+ * 
+ */
 
 export const fetchMoreData = async (resource, setResource) => {
   try {

@@ -26,6 +26,11 @@ function PostsList({ message, filter = "" }) {
 
   const [query, setQuery] = useState("");
 
+  /**
+   * Fetches posts from API
+   * 
+   */
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {

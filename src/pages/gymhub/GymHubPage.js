@@ -1,6 +1,6 @@
 // React and Router
 import { Link, } from "react-router-dom";
-import React from "react";
+import React, { useEffect } from "react";
 // Components
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -9,7 +9,7 @@ import Container from "react-bootstrap/Container";
 // Styles
 import styles from "../../styles/SignUp.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
+import { useHistory } from 'react-router-dom';
 
 /**
  * Gym Hub page
@@ -18,6 +18,19 @@ import btnStyles from "../../styles/Button.module.css";
  */
  
 const GymHubPage = () => {
+
+/**
+ *  Redirects the user to the home page if they are logged in
+ */
+
+  const history = useHistory();
+  const isLoggedIn = true;
+  useEffect(() => {
+    if (isLoggedIn) {
+      history.push('/home');
+    }
+  }, [history, isLoggedIn]);
+
     return (
 
         <Row className={styles.Row}>
