@@ -7,12 +7,17 @@ import Container from 'react-bootstrap/Container';
 import Post from "./Post";
 import Comment from "../comments/Comment";
 import CommentCreateForm from "../comments/CommentCreateForm";
+import InfiniteScroll from "react-infinite-scroll-component";
+import Asset from "../../components/Asset";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 // Styles
 import appStyles from "../../App.module.css";
 // Hooks
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+// Utils
+import { fetchMoreData } from "../../utils/utils";
 
 /**
  * Post page
@@ -61,25 +66,27 @@ function PostPage() {
           ) : comments.results.length ? (
             "Comments"
           ) : null}
-
-            {comments.results.length ? (
-            comments.results.map((comment) => (
-              <Comment key={comment.id}
-               {...comment} 
-                setPost={setPost}
-                setComments={setComments}
-               />
-            ))
+          {comments.results.length ? (
+            <InfiniteScroll
+              children={comments.results.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  {...comment}
+                  setPost={setPost}
+                  setComments={setComments}
+                />
+              ))}
+              dataLength={comments.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!comments.next}
+              next={() => fetchMoreData(comments, setComments)}
+            />
           ) : currentUser ? (
-            <span> Be the first to comment!</span>
+            <span>No comments yet, be the first to comment!</span>
           ) : (
             <span>No comments... yet</span>
           )}
-
         </Container>
-      </Col>
-      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        Popular profiles for desktop
       </Col>
     </Row>
   );
