@@ -10,14 +10,18 @@ import reportWebVitals from "./reportWebVitals";
 // Context
 import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import { ProfileDataProvider } from "./contexts/ProfileDataContext";
+import { PostDataProvider } from "./contexts/PostDataContext";
+
 
 ReactDOM.render(
 
     <Router>
       <CurrentUserProvider>
-
+      <ProfileDataProvider>
+      <PostDataProvider>
         <App />
-
+        </PostDataProvider>
+      </ProfileDataProvider>
       </CurrentUserProvider>
     </Router>,
 

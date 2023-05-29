@@ -23,6 +23,7 @@ import "react-notifications/lib/notifications.css";
 // Context
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 
+
 function App() {
   const currentUser = useCurrentUser();
   const profile_id = currentUser?.profile_id || "";
@@ -40,62 +41,76 @@ function App() {
   }
 
   return (
-  <div className={styles.App}>
-    {gymPage && (
-      <>
-      <NavBar />
-      <NotificationContainer />
-      <Switch>
-        <Route exact path="/" render={() => <GymHubPage/>} />
-      </Switch>
-      <Footer />
-      </>
-    )}
-    {mainSite && (
-      <>
-      <NavBar />
-      <NotificationContainer />
-      <Container className={styles.Main}>
-        <Switch>
-        <Route
-            exact
-            path="/home"
-            render={() => (
-              <PostList message="No results found. Adjust the search keyword." />
-            )}
-          />
-          <Route
-            exact
-            path="/feed"
-            render={() => (
-              <PostList
-                message="No results found. Adjust the search keyword or follow a user."
-                filter={`owner__followed__owner__profile=${profile_id}&`}
-              />
-            )}
-          />
-          <Route
-            exact
-            path="/likes"
-            render={() => (
-              <PostList
-                message="No results found. Adjust the search keyword or like a post."
-                filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
-              />
-            )}
-          />
-          <Route exact path="/signin" render={() => <SignIn/>} />
-          <Route exact path="/signup" render={() => <SignUp/>} />
-          <Route exact path="/posts/create" render={() => <PostCreateForm />} />
-          <Route exact path="/posts/:id" render={() => <PostPage />} />
-          <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
-          <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
-          <Route render={() => <PageNotFound />} />
-        </Switch>
-      </Container>
-      <Footer />
-      </>
-    )}
+    <div className={styles.App}>
+      {gymPage && (
+        <>
+          <NavBar />
+          <NotificationContainer />
+          <Switch>
+            <Route exact path="/" render={() => <GymHubPage />} />
+          </Switch>
+          <Footer />
+        </>
+      )}
+      {mainSite && (
+          <>
+            <NavBar />
+            <NotificationContainer />
+            <Container className={styles.Main}>
+              <Switch>
+                <Route
+                  exact
+                  path="/home"
+                  render={() => (
+                    <PostList
+                      message="No results found. Adjust the search keyword."
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/feed"
+                  render={() => (
+                    <PostList
+                      message="No results found. Adjust the search keyword or follow a user."
+                      filter={`owner__followed__owner__profile=${profile_id}&`}
+                    />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/likes"
+                  render={() => (
+                    <PostList
+                      message="No results found. Adjust the search keyword or like a post."
+                      filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
+                    />
+                  )}
+                />
+                <Route exact path="/signin" render={() => <SignIn />} />
+                <Route exact path="/signup" render={() => <SignUp />} />
+                <Route
+                  exact
+                  path="/posts/create"
+                  render={() => <PostCreateForm />}
+                />
+                <Route exact path="/posts/:id" render={() => <PostPage />} />
+                <Route
+                  exact
+                  path="/posts/:id/edit"
+                  render={() => <PostEditForm />}
+                />
+                <Route
+                  exact
+                  path="/profiles/:id"
+                  render={() => <ProfilePage />}
+                />
+                <Route render={() => <PageNotFound />} />
+              </Switch>
+            </Container>
+            <Footer />
+          </>
+      )}
     </div>
   );
 }
