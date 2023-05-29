@@ -9,12 +9,15 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 // Context
 import { CurrentUserProvider } from "./contexts/CurrentUserContext";
+import { ProfileDataProvider } from "./contexts/ProfileDataContext";
 
 ReactDOM.render(
 
     <Router>
       <CurrentUserProvider>
-      <App />
+
+        <App />
+
       </CurrentUserProvider>
     </Router>,
 

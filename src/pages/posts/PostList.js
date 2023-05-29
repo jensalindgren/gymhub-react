@@ -10,7 +10,6 @@ import Post from "./Post";
 import Asset from "../../components/Asset";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PopularProfiles from "../profiles/PopularProfiles";
-
 // Styles
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostList.module.css";

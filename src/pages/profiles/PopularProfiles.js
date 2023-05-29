@@ -8,9 +8,13 @@ import { axiosReq } from "../../api/axiosDefaults";
 // Styles
 import appStyles from "../../App.module.css";
 // Components
+import Profile from "./Profile";
+// Assets
 import Asset from "../../components/Asset";
 // Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import PopularPosts from  "../posts/PopularPosts";
+
 
 /**
  * Popular profiles
@@ -25,6 +29,11 @@ const PopularProfiles = ({ mobile }) => {
   });
   const { popularProfiles, popularPosts } = profileData;
   const currentUser = useCurrentUser();
+
+
+  /**
+   * Fetch popular profiles and posts
+   */
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,16 +69,16 @@ const PopularProfiles = ({ mobile }) => {
     >
       {popularProfiles.results.length ? (
         <>
-          <h3>Most followed profiles.</h3>
+          <p>Most followed profiles.</p>
           {mobile ? (
             <div className="d-flex justify-content-around">
               {popularProfiles.results.slice(0, 4).map((profile) => (
-                <p key={profile.id}>{profile.owner}</p>
+                <Profile key={profile.id} profile={profile} mobile />
               ))}
             </div>
           ) : (
             popularProfiles.results.map((profile) => (
-              <p key={profile.id}>{profile.owner}</p>
+              <Profile key={profile.id} profile={profile} />
             ))
           )}
         </>
@@ -77,25 +86,25 @@ const PopularProfiles = ({ mobile }) => {
         <Asset spinner />
       )}
 
-{popularPosts.results.length ? (
-    <>
-      <h3>Popular posts.</h3>
-      {mobile ? (
-        <div className="d-flex justify-content-around">
-          {popularPosts.results.slice(0, 4).map((post) => (
-            <p key={post.id}>{post.title}</p>
-          ))}
-        </div>
+      {popularPosts.results.length ? (
+        <>
+          <h3>Popular posts.</h3>
+          {mobile ? (
+            <div className="d-flex justify-content-around">
+              {popularPosts.results.slice(0, 4).map((post) => (
+                <PopularPosts key={post.id} post={post} mobile />
+              ))}
+            </div>
+          ) : (
+            popularPosts.results.map((post) => (
+              <PopularPosts key={post.id} post={post} />
+            ))
+          )}
+        </>
       ) : (
-        popularPosts.results.map((post) => (
-          <p key={post.id}>{post.title}</p>
-        ))
+        <Asset spinner />
       )}
-    </>
-  ) : (
-    <Asset spinner />
-  )}
-</Container>
+    </Container>
   );
 };
 

@@ -9,6 +9,7 @@ import Comment from "../comments/Comment";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
+import PopularProfiles from "../profiles/PopularProfiles";
 // Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 // Styles
@@ -52,7 +53,7 @@ function PostPage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Popular profiles for mobile</p>
+      <PopularProfiles mobile />
         <Post {...post.results[0]} setPosts={setPost} postPage />
         <Container className={appStyles.Content}>
           {currentUser ? (
@@ -87,6 +88,9 @@ function PostPage() {
             <span>No comments... yet</span>
           )}
         </Container>
+        <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
+        Popular profiles for desktop
+      </Col>
       </Col>
     </Row>
   );
