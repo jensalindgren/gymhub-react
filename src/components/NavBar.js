@@ -10,7 +10,7 @@ import logo from "../assets/logo.png";
 // Styles
 import styles from "../styles/NavBar.module.css";
 // Profile
-import Profile from './Avatar';
+import Avatar from "./Avatar";
 // Axios
 import axios from 'axios';
 // Notifications
@@ -108,10 +108,9 @@ const NavBar = () => {
               </NavLink>
               <NavLink
                 className={styles.NavLink}
-                to={`/profile/${currentUser?.profile_id}`}
+                to={`/profiles/${currentUser?.profile_id}`}
                 >
-                <img className={styles.img} src={currentUser?.profile_image} alt="profile" text={currentUser?.username} />
-                <Profile src={currentUser?.profile_image} text={currentUser?.username}/>
+                <Avatar className={styles.img} src={currentUser?.profile_image} text={currentUser?.username} height={20} />
               </NavLink>
               
   </>
