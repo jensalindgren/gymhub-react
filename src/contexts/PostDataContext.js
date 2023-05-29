@@ -1,40 +1,38 @@
-// import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { axiosReq } from "../api/axiosDefaults";
 
-// export const PostDataContext = createContext();
-// export const SetPostDataContext = createContext();
+const PostDataContext = createContext();
+const SetPostDataContext = createContext();
 
-// export const usePostData = () => useContext(PostDataContext);
-// export const useSetPostData = () => useContext(SetPostDataContext);
+export const usePostData = () => useContext(PostDataContext);
+export const useSetPostData = () => useContext(SetPostDataContext);
 
-// export const PostDataProvider = ({ children }) => {
-//   const [postData, setPostData] = useState({
-//     popularPosts: { results: [] },
-//   });
+export const PostDataProvider = ({ children }) => {
+  const [postData, setPostData] = useState({
+    popularPosts: { results: [] },
+  });
 
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
+  useEffect(() => {
+    const fetchPopularPosts = async () => {
+      try {
+        const response = await axiosReq.get("/posts/?ordering=-likes_count");
+        setPostData((prevState) => ({
+          ...prevState,
+          popularPosts: response.data,
+        }));
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-//         const response = await fetch("/api/popular-posts");
-//         const data = await response.json();
+    fetchPopularPosts();
+  }, []);
 
-//         setPostData((prevState) => ({
-//           ...prevState,
-//           popularPosts: data,
-//         }));
-//       } catch (err) {
-//         console.log(err);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   return (
-//     <PostDataContext.Provider value={postData}>
-//       <SetPostDataContext.Provider value={setPostData}>
-//         {children}
-//       </SetPostDataContext.Provider>
-//     </PostDataContext.Provider>
-//   );
-// };
+  return (
+    <PostDataContext.Provider value={postData}>
+      <SetPostDataContext.Provider value={setPostData}>
+        {children}
+      </SetPostDataContext.Provider>
+    </PostDataContext.Provider>
+  );
+};
