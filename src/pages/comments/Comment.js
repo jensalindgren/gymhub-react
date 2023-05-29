@@ -41,7 +41,10 @@ const Comment = (props) => {
   
     const handleDelete = async () => {
         try {
+          console.log("Deleting comment with ID:", id); // Log the ID before deletion
           await axiosRes.delete(`/comments/${id}/`);
+          // Delay the state update for a short period
+          await new Promise(resolve => setTimeout(resolve, 500));
           setPost((prevPost) => ({
             results: [
               {
@@ -51,10 +54,17 @@ const Comment = (props) => {
             ],
           }));
       
-          setComments((prevComments) => ({
-            ...prevComments,
-            results: prevComments.results.filter((comment) => comment.id !== id),
-          }));
+          setComments((prevComments) => {
+            const updatedResults = prevComments.results.filter(
+              (comment) => comment.id !== id
+            );
+            console.log("Prev Comments:", prevComments.results);
+            console.log("Updated Comments:", updatedResults);
+            return {
+              ...prevComments,
+              results: updatedResults,
+            };
+          });
       
           NotificationManager.success("Comment deleted successfully");
         } catch (err) {
