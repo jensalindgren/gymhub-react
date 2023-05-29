@@ -11,6 +11,7 @@ import Container from "react-bootstrap/Container";
 import PageNotFound from "./components/PageNotFound";
 import GymHubPage from "./pages/gymhub/GymHubPage";
 import PostCreateForm from "./pages/posts/PostCreateForm";
+import PostPage from "./pages/posts/PostPage";
 // API
 import './api/axiosDefaults';
 // Notifications
@@ -53,6 +54,7 @@ function App() {
           <Route exact path="/signin" render={() => <SignIn/>} />
           <Route exact path="/signup" render={() => <SignUp/>} />
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
+          <Route exact path="/posts/:id" render={() => <PostPage />} />
           <Route render={() => <PageNotFound />} />
         </Switch>
       </Container>

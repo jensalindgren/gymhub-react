@@ -18,6 +18,8 @@ import btnStyles from "../../styles/Button.module.css";
 // Hooks
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+// Notifications
+import { NotificationManager } from "react-notifications";
 
 /**
  * Post create form
@@ -74,10 +76,12 @@ function PostCreateForm() {
     try {
       const { data } = await axiosReq.post("/posts/", formData);
       history.push(`/posts/${data.id}`);
+      NotificationManager.success("Post created successfully", "Success!");
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
+        NotificationManager.error("There was an issue creating your post", "Error");
       }
     }
   };
