@@ -13,6 +13,7 @@ import GymHubPage from "./pages/gymhub/GymHubPage";
 import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostPage from "./pages/posts/PostPage";
 import PostList from "./pages/posts/PostList";
+import PostEditForm from "./pages/posts/PostEditForm";
 // API
 import './api/axiosDefaults';
 // Notifications
@@ -86,6 +87,7 @@ function App() {
           <Route exact path="/signup" render={() => <SignUp/>} />
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
           <Route exact path="/posts/:id" render={() => <PostPage />} />
+          <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route render={() => <PageNotFound />} />
         </Switch>
       </Container>
