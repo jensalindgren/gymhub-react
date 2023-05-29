@@ -9,6 +9,7 @@ import Container from "react-bootstrap/Container";
 import Post from "./Post";
 import Asset from "../../components/Asset";
 import InfiniteScroll from "react-infinite-scroll-component";
+import PopularProfiles from "../profiles/PopularProfiles";
 // Styles
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostList.module.css";
@@ -93,6 +94,9 @@ function PostsList({ message, filter = "" }) {
             <Asset spinner />
           </Container>
         )}
+      </Col>
+      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
+        <PopularProfiles />
       </Col>
     </Row>
   );
