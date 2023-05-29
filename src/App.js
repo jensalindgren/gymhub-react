@@ -1,7 +1,7 @@
 // Styles
 import styles from "./App.module.css";
 // React and Router
-import { Route, Switch, useLocation } from "react-router-dom";
+import { Route, Switch, useLocation} from "react-router-dom";
 // Components
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
@@ -12,13 +12,18 @@ import PageNotFound from "./components/PageNotFound";
 import GymHubPage from "./pages/gymhub/GymHubPage";
 import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostPage from "./pages/posts/PostPage";
+import PostList from "./pages/posts/PostList";
 // API
 import './api/axiosDefaults';
 // Notifications
 import { NotificationContainer } from "react-notifications";
 import "react-notifications/lib/notifications.css";
+// Context
+import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 function App() {
+  const currentUser = useCurrentUser();
+  const profile_id = currentUser?.profile_id || "";
   const location = useLocation();
 
   let gymPage = true;
@@ -50,7 +55,33 @@ function App() {
       <NotificationContainer />
       <Container className={styles.Main}>
         <Switch>
-          <Route exact path="/home" render={() => <h1>Home page</h1>} />
+        <Route
+            exact
+            path="/home"
+            render={() => (
+              <PostList message="No results found. Adjust the search keyword." />
+            )}
+          />
+          <Route
+            exact
+            path="/feed"
+            render={() => (
+              <PostList
+                message="No results found. Adjust the search keyword or follow a user."
+                filter={`owner__followed__owner__profile=${profile_id}&`}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/likes"
+            render={() => (
+              <PostList
+                message="No results found. Adjust the search keyword or like a post."
+                filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
+              />
+            )}
+          />
           <Route exact path="/signin" render={() => <SignIn/>} />
           <Route exact path="/signup" render={() => <SignUp/>} />
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
