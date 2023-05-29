@@ -10,6 +10,7 @@ import Post from "./Post";
 import Asset from "../../components/Asset";
 import InfiniteScroll from "react-infinite-scroll-component";
 import PopularProfiles from "../profiles/PopularProfiles";
+
 // Styles
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostList.module.css";
@@ -56,7 +57,7 @@ function PostsList({ message, filter = "" }) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Popular profiles mobile</p>
+      <PopularProfiles mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}

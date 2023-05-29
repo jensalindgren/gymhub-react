@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 // Bootstrap
 import { Container } from "react-bootstrap";
+
 // API
 import { axiosReq } from "../../api/axiosDefaults";
 // Styles
@@ -16,7 +17,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
  * @component
  */
 
-const PopularProfiles = () => {
+const PopularProfiles = ({ mobile }) => {
   const [profileData, setProfileData] = useState({
     pageProfile: { results: [] },
     popularProfiles: { results: [] },
@@ -52,29 +53,49 @@ const PopularProfiles = () => {
   }, [currentUser]);
 
   return (
-    <Container className={appStyles.Content}>
+    <Container
+      className={`${appStyles.Content} ${
+        mobile && "d-lg-none text-center mb-3"
+      }`}
+    >
       {popularProfiles.results.length ? (
         <>
           <h3>Most followed profiles.</h3>
-          {popularProfiles.results.map((profile) => (
-            <p key={profile.id}>{profile.owner}</p>
-          ))}
+          {mobile ? (
+            <div className="d-flex justify-content-around">
+              {popularProfiles.results.slice(0, 4).map((profile) => (
+                <p key={profile.id}>{profile.owner}</p>
+              ))}
+            </div>
+          ) : (
+            popularProfiles.results.map((profile) => (
+              <p key={profile.id}>{profile.owner}</p>
+            ))
+          )}
         </>
       ) : (
         <Asset spinner />
       )}
 
-      {popularPosts.results.length ? (
-        <>
-          <h3>Popular posts.</h3>
-          {popularPosts.results.map((post) => (
+{popularPosts.results.length ? (
+    <>
+      <h3>Popular posts.</h3>
+      {mobile ? (
+        <div className="d-flex justify-content-around">
+          {popularPosts.results.slice(0, 4).map((post) => (
             <p key={post.id}>{post.title}</p>
           ))}
-        </>
+        </div>
       ) : (
-        <Asset spinner />
+        popularPosts.results.map((post) => (
+          <p key={post.id}>{post.title}</p>
+        ))
       )}
-    </Container>
+    </>
+  ) : (
+    <Asset spinner />
+  )}
+</Container>
   );
 };
 
