@@ -1,26 +1,13 @@
-// Styles
-import styles from "../../styles/Post.module.css";
-// React and Router
-import { Link } from "react-router-dom";
 import React from "react";
-import { useHistory } from "react-router";
-// Components
-import Avatar from "../../components/Avatar";
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { MoreDropdown } from "../../components/MoreDropdown";
-// Hooks
-import { axiosRes } from "../../api/axiosDefaults";
+import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-// Notifications
-import { NotificationManager } from "react-notifications";
-
+import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
+import Avatar from "../../components/Avatar";
+import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropdown";
 
 const Post = (props) => {
-
-  /**
-   * Post component
-   */
-
   const {
     id,
     owner,
@@ -41,33 +28,18 @@ const Post = (props) => {
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
 
-  /**
-   * Edit post
-   */
-
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
   };
 
-  /**
-   * Delete post
-   * 
-   */
-
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
-      history.push("/home");
-      NotificationManager.success("Post deleted successfully", "Success!");
+      history.goBack();
     } catch (err) {
       console.log(err);
-      NotificationManager.error("There was an issue deleting your post", "Error");
     }
   };
-
-  /**
-   * Like/unlike post
-   */
 
   const handleLike = async () => {
     try {
@@ -111,7 +83,12 @@ const Post = (props) => {
           </Link>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && postPage && <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete}/>}
+            {is_owner && postPage && (
+              <MoreDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
           </div>
         </Media>
       </Card.Body>
