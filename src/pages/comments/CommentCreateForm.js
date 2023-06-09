@@ -48,7 +48,6 @@ function CommentCreateForm(props) {
       setContent("");
       NotificationManager.success("Comment added");
     } catch (err) {
-      console.log(err);
       NotificationManager.error("Comment failed to post");
     }
   };

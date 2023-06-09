@@ -7,6 +7,8 @@ import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 import Card from 'react-bootstrap/Card';
 import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 // Components
 import Asset from "../../components/Asset";
 // Assets
@@ -78,7 +80,6 @@ function PostCreateForm() {
       history.push(`/posts/${data.id}`);
       NotificationManager.success("Post created successfully", "Success!");
     } catch (err) {
-      console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
         NotificationManager.error("There was an issue creating your post", "Error");
@@ -96,6 +97,7 @@ function PostCreateForm() {
       <Form.Group>
         <Form.Label>Title</Form.Label>
         <Form.Control
+          id="myFormControl"
           type="text"
           name="title"
           value={title}
@@ -130,27 +132,83 @@ function PostCreateForm() {
     </div>
   );
 
-  return (
-  <Form className={styles.CardBody} onSubmit={handleSubmit}>
-   <Row className={`${styles.FormBody} text-center my-auto py-2 p-md-2`}>
-          <Card.Body >
+//   return (
+//   <Form className={styles.CardBody} onSubmit={handleSubmit}>
+//    <Row className={`${styles.FormBody} text-center my-auto py-2 p-md-2`}>
+//           <Card.Body >
+//             {image ? (
+//                 <>
+//                   <figure>
+//                     <Image className={appStyles.Image} src={image} rounded />
+//                   </figure>
+//                   <div>
+//                     <Form.Label
+//                       className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+//                       htmlFor="image-upload"
+//                     >
+//                       Change the image
+//                     </Form.Label>
+//                   </div>
+//                 </>
+//               )
+//               : (
+//                 <Form.Label
+//                 className="d-flex justify-content-center"
+//                 htmlFor="image-upload"
+//               >
+//                 <Asset
+//                   src={Upload}
+//                   message="Click or tap to upload an image"
+//                 />
+//               </Form.Label>
+//             )}
+
+//             <Form.Group controlId="formFile" className="mb-3">
+//               <Form.Control type="file"
+//                 id="image-upload"
+//                 accept="image/"
+//                 onChange={handleChangeImage}
+//                 ref={imageInput} />
+//               </Form.Group>
+
+//             {errors?.image?.map((message, idx) => (
+//               <Alert variant="warning" key={idx}>
+//                 {message}
+//               </Alert>
+//             ))}
+
+//         <Card.Footer className={styles.CardFooter}>{textFields}</Card.Footer>
+//         </Card.Body>
+//         </Row>
+
+//     </Form>
+//   );
+// }
+
+return (
+  <Form onSubmit={handleSubmit}>
+    <Row>
+      <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+        <Container
+          className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+        >
+          <Form.Group className="text-center">
             {image ? (
-                <>
-                  <figure>
-                    <Image className={appStyles.Image} src={image} rounded />
-                  </figure>
-                  <div>
-                    <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                      htmlFor="image-upload"
-                    >
-                      Change the image
-                    </Form.Label>
-                  </div>
-                </>
-              )
-              : (
-                <Form.Label
+              <>
+                <figure>
+                  <Image className={appStyles.Image} src={image} rounded />
+                </figure>
+                <div>
+                  <Form.Label
+                    className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                    htmlFor="image-upload"
+                  >
+                    Change the image
+                  </Form.Label>
+                </div>
+              </>
+            ) : (
+              <Form.Label
                 className="d-flex justify-content-center"
                 htmlFor="image-upload"
               >
@@ -161,26 +219,28 @@ function PostCreateForm() {
               </Form.Label>
             )}
 
-            <Form.Group controlId="formFile" className="mb-3">
-              <Form.Control type="file"
-                id="image-upload"
-                accept="image/"
-                onChange={handleChangeImage}
-                ref={imageInput} />
-              </Form.Group>
+            <Form.File
+              id="image-upload"
+              accept="image/*"
+              onChange={handleChangeImage}
+              ref={imageInput}
+            />
+          </Form.Group>
+          {errors?.image?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+              {message}
+            </Alert>
+          ))}
 
-            {errors?.image?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
-
-        <Card.Footer className={styles.CardFooter}>{textFields}</Card.Footer>
-        </Card.Body>
-        </Row>
-
-    </Form>
-  );
+          <div className="d-md-none">{textFields}</div>
+        </Container>
+      </Col>
+      <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
+        <Container className={appStyles.Content}>{textFields}</Container>
+      </Col>
+    </Row>
+  </Form>
+);
 }
 
 export default PostCreateForm;

@@ -60,8 +60,6 @@ const Comment = (props) => {
             const updatedResults = prevComments.results.filter(
               (comment) => comment.id !== id
             );
-            console.log("Prev Comments:", prevComments.results);
-            console.log("Updated Comments:", updatedResults);
             return {
               ...prevComments,
               results: updatedResults,
@@ -70,7 +68,6 @@ const Comment = (props) => {
       
           NotificationManager.success("Comment deleted");
         } catch (err) {
-          console.error(err);
           NotificationManager.error("Failed to delete comment");
         }
       };

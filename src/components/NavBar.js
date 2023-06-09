@@ -17,6 +17,7 @@ import axios from 'axios';
 import { NotificationManager } from "react-notifications";
 // Hooks
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
+import { removeTokenTimestamp } from '../utils/utils';
 
 /**
  * User Navbar page
@@ -42,9 +43,9 @@ const NavBar = () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      removeTokenTimestamp();
       NotificationManager.success("Signed out successfully", "Success!");
     } catch (err) {
-      console.log(err);
       NotificationManager.error("There was an issue signing you out", "Error");
     }
   };
