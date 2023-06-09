@@ -21,7 +21,6 @@ export const PostDataProvider = ({ children }) => {
           popularPosts: response.data,
         }));
       } catch (error) {
-        console.log(error);
       }
     };
 
