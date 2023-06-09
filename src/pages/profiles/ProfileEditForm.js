@@ -231,7 +231,9 @@ const ProfileEditForm = () => {
     }
 
     try {
-      const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
+      const { data } = await axiosReq.put(`/profiles/${id}/`, formData, {
+        headers: { "Content-Type": "multipart/form-data" }, // Set content type as multipart/form-data
+      });
       setCurrentUser((currentUser) => ({
         ...currentUser,
         profile_image: data.image,
