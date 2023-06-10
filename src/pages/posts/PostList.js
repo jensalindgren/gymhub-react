@@ -1,36 +1,38 @@
-// React and Router
 import React, { useEffect, useState } from "react";
-// Components
+
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-// Components
+
 import Post from "./Post";
 import Asset from "../../components/Asset";
-import InfiniteScroll from "react-infinite-scroll-component";
-import PopularProfiles from "../profiles/PopularProfiles";
-// Styles
+
 import appStyles from "../../App.module.css";
-import styles from "../../styles/PostList.module.css";
+import styles from "../../styles/PostsPage.module.css";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-// Assets
+
 import NoResults from "../../assets/no-results.png";
-// Utils
+import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import PopularProfiles from "../profiles/PopularProfiles";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function PostsList({ message, filter = "" }) {
+
+  /**
+   * Fetches posts from API
+   * 
+   */
+
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
 
   const [query, setQuery] = useState("");
 
-  /**
-   * Fetches posts from API
-   * 
-   */
+  const currentUser = useCurrentUser();
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -39,6 +41,7 @@ function PostsList({ message, filter = "" }) {
         setPosts(data);
         setHasLoaded(true);
       } catch (err) {
+        // console.log(err);
       }
     };
 
@@ -50,12 +53,12 @@ function PostsList({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, currentUser]);
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-      <PopularProfiles mobile />
+        <PopularProfiles mobile />
         <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
           className={styles.SearchBar}
