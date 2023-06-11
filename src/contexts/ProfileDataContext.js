@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { followHelper, unfollowHelper } from "../utils/utils";
@@ -11,7 +11,6 @@ export const useSetProfileData = () => useContext(SetProfileDataContext);
 
 export const ProfileDataProvider = ({ children }) => {
   const [profileData, setProfileData] = useState({
-    // we will use the pageProfile later!
     pageProfile: { results: [] },
     popularProfiles: { results: [] },
   });
@@ -24,22 +23,25 @@ export const ProfileDataProvider = ({ children }) => {
         followed: clickedProfile.id,
       });
 
-      setProfileData((prevState) => ({
-        ...prevState,
-        pageProfile: {
-          results: prevState.pageProfile.results.map((profile) =>
-            followHelper(profile, clickedProfile, data.id)
-          ),
-        },
-        popularProfiles: {
-          ...prevState.popularProfiles,
-          results: prevState.popularProfiles.results.map((profile) =>
-            followHelper(profile, clickedProfile, data.id)
-          ),
-        },
-      }));
+      setProfileData((prevState) => {
+        return {
+          ...prevState,
+          pageProfile: {
+            results: prevState.pageProfile.results.map((profile) =>
+              followHelper(profile, clickedProfile, data.id)
+            ),
+          },
+          popularProfiles: {
+            ...prevState.popularProfiles,
+            results: prevState.popularProfiles.results.map((profile) =>
+              followHelper(profile, clickedProfile, data.id)
+            ),
+          },
+        };
+      });
     } catch (err) {
-      // console.log(err);
+      // Handle error appropriately (e.g., display error message to the user)
+      console.error("Failed to follow:", err);
     }
   };
 
@@ -47,22 +49,25 @@ export const ProfileDataProvider = ({ children }) => {
     try {
       await axiosRes.delete(`/followers/${clickedProfile.following_id}/`);
 
-      setProfileData((prevState) => ({
-        ...prevState,
-        pageProfile: {
-          results: prevState.pageProfile.results.map((profile) =>
-            unfollowHelper(profile, clickedProfile)
-          ),
-        },
-        popularProfiles: {
-          ...prevState.popularProfiles,
-          results: prevState.popularProfiles.results.map((profile) =>
-            unfollowHelper(profile, clickedProfile)
-          ),
-        },
-      }));
+      setProfileData((prevState) => {
+        return {
+          ...prevState,
+          pageProfile: {
+            results: prevState.pageProfile.results.map((profile) =>
+              unfollowHelper(profile, clickedProfile)
+            ),
+          },
+          popularProfiles: {
+            ...prevState.popularProfiles,
+            results: prevState.popularProfiles.results.map((profile) =>
+              unfollowHelper(profile, clickedProfile)
+            ),
+          },
+        };
+      });
     } catch (err) {
-      // console.log(err);
+      // Handle error appropriately (e.g., display error message to the user)
+      console.error("Failed to unfollow:", err);
     }
   };
 
@@ -72,12 +77,15 @@ export const ProfileDataProvider = ({ children }) => {
         const { data } = await axiosReq.get(
           "/profiles/?ordering=-followers_count"
         );
-        setProfileData((prevState) => ({
-          ...prevState,
-          popularProfiles: data,
-        }));
+        setProfileData((prevState) => {
+          return {
+            ...prevState,
+            popularProfiles: data,
+          };
+        });
       } catch (err) {
-        // console.log(err);
+        // Handle error appropriately (e.g., display error message to the user)
+        console.error("Failed to fetch popular profiles:", err);
       }
     };
 
