@@ -54,7 +54,7 @@ const SignUp = () => {
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
       history.push("/signin");
-      NotificationManager.success("Account created successfully", "Success!");
+      NotificationManager.success("Account created", "Success!");
     } catch (err) {
       setErrors(err.response?.data);
       NotificationManager.error("There was an issue signing you up", "Error");

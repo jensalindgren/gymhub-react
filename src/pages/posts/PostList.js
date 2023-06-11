@@ -19,13 +19,7 @@ import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-function PostsList({ message, filter = "" }) {
-
-  /**
-   * Fetches posts from API
-   * 
-   */
-
+function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
@@ -104,4 +98,4 @@ function PostsList({ message, filter = "" }) {
   );
 }
 
-export default PostsList;
+export default PostsPage;

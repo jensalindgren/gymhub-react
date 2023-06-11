@@ -1,14 +1,12 @@
-// React and Router
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
-// API
 import axios from "axios";
-import { axiosRes, axiosReq } from "../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useHistory } from "react-router";
 import { removeTokenTimestamp, shouldRefreshToken } from "../utils/utils";
 
-// Export the context
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
+
 export const useCurrentUser = () => useContext(CurrentUserContext);
 export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 
@@ -19,8 +17,9 @@ export const CurrentUserProvider = ({ children }) => {
   const handleMount = async () => {
     try {
       const { data } = await axiosRes.get("dj-rest-auth/user/");
-      setCurrentUser({ ...data, profile_image: data.profile_image });
+      setCurrentUser(data);
     } catch (err) {
+      // console.log(err);
     }
   };
 
@@ -82,4 +81,3 @@ export const CurrentUserProvider = ({ children }) => {
     </CurrentUserContext.Provider>
   );
 };
-
