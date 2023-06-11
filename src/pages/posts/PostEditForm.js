@@ -17,7 +17,7 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 // Hooks
 import { useHistory, useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosInstance } from "../../api/axiosDefaults";
 // Notifications
 import { NotificationManager } from "react-notifications";
 
@@ -44,7 +44,7 @@ function PostEditForm() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(`/posts/${id}/`);
+        const { data } = await axiosInstance.get(`/posts/${id}/`);
         const { title, content, image, is_owner } = data;
 
         is_owner ? setPostData({ title, content, image }) : history.push("/");
@@ -98,7 +98,7 @@ function PostEditForm() {
 
 
     try {
-      await axiosReq.put(`/posts/${id}/`, formData);
+      await axiosInstance.put(`/posts/${id}/`, formData);
       history.push(`/posts/${id}`);
       NotificationManager.success(" Post Edit ", "Success!");
     } catch (err) {

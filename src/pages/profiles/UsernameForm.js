@@ -8,7 +8,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 
 import { useHistory, useParams } from "react-router-dom";
-import { axiosRes } from "../../api/axiosDefaults";
+import { axiosInstance } from "../../api/axiosDefaults";
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -38,7 +38,7 @@ const UsernameForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axiosRes.put("/dj-rest-auth/user/", {
+      await axiosInstance.put("/dj-rest-auth/user/", {
         username,
       });
       setCurrentUser((prevUser) => ({

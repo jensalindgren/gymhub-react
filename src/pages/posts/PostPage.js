@@ -6,7 +6,7 @@ import Container from "react-bootstrap/Container";
 
 import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosInstance } from "../../api/axiosDefaults";
 import Post from "./Post";
 import Comment from "../comments/Comment";
 
@@ -30,8 +30,8 @@ function PostPage() {
     const handleMount = async () => {
       try {
         const [{ data: post }, { data: comments }] = await Promise.all([
-          axiosReq.get(`/posts/${id}`),
-          axiosReq.get(`/comments/?post=${id}`),
+          axiosInstance.get(`/posts/${id}`),
+          axiosInstance.get(`/comments/?post=${id}`),
         ]);
         setPost({ results: [post] });
         setComments(comments);

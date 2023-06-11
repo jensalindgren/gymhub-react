@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { axiosReq } from "../api/axiosDefaults";
+import { axiosInstance } from "../api/axiosDefaults";
 
 const PostDataContext = createContext();
 const SetPostDataContext = createContext();
@@ -15,7 +15,7 @@ export const PostDataProvider = ({ children }) => {
   useEffect(() => {
     const fetchPopularPosts = async () => {
       try {
-        const response = await axiosReq.get("/posts/?ordering=-likes_count");
+        const response = await axiosInstance.get("/posts/?ordering=-likes_count");
         setPostData((prevState) => ({
           ...prevState,
           popularPosts: response.data,

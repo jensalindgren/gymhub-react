@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { axiosReq, axiosRes } from "../api/axiosDefaults";
+import { axiosInstance} from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import { followHelper, unfollowHelper } from "../utils/utils";
 
@@ -18,11 +18,12 @@ export const ProfileDataProvider = ({ children }) => {
   const currentUser = useCurrentUser();
 
   const handleFollow = async (clickedProfile) => {
+    console.log("Clicked Profile (handleFollow):", clickedProfile);
     try {
-      const { data } = await axiosRes.post("/followers/", {
+      const { data } = await axiosInstance.post("/followers/", {
         followed: clickedProfile.id,
       });
-
+  
       setProfileData((prevState) => {
         return {
           ...prevState,
@@ -46,8 +47,9 @@ export const ProfileDataProvider = ({ children }) => {
   };
 
   const handleUnfollow = async (clickedProfile) => {
+    console.log("Clicked Profile (handleUnfollow):", clickedProfile);
     try {
-      await axiosRes.delete(`/followers/${clickedProfile.following_id}/`);
+      await axiosInstance.delete(`/followers/${clickedProfile.following_id}/`);
 
       setProfileData((prevState) => {
         return {
@@ -74,7 +76,7 @@ export const ProfileDataProvider = ({ children }) => {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(
+        const { data } = await axiosInstance.get(
           "/profiles/?ordering=-followers_count"
         );
         setProfileData((prevState) => {

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 // Bootstrap
 import Form from "react-bootstrap/Form";
 // API
-import { axiosRes } from "../../api/axiosDefaults";
+import { axiosInstance } from "../../api/axiosDefaults";
 // Styles
 import styles from "../../styles/CommentCreateEditForm.module.css";
 // Notifications
@@ -26,7 +26,7 @@ function CommentEditForm(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axiosRes.put(`/comments/${id}/`, {
+      await axiosInstance.put(`/comments/${id}/`, {
         content: formContent.trim(),
       });
       setComments((prevComments) => ({

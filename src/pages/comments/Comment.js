@@ -11,7 +11,7 @@ import styles from "../../styles/Comment.module.css";
 // Context
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 // API
-import { axiosRes } from "../../api/axiosDefaults";
+import { axiosInstance } from "../../api/axiosDefaults";
 // Notifications
 import { NotificationManager } from "react-notifications";
 
@@ -44,7 +44,7 @@ const Comment = (props) => {
     const handleDelete = async () => {
         try {
           console.log("Deleting comment with ID:", id); // Log the ID before deletion
-          await axiosRes.delete(`/comments/${id}/`);
+          await axiosInstance.delete(`/comments/${id}/`);
           // Delay the state update for a short period
           await new Promise(resolve => setTimeout(resolve, 500));
           setPost((prevPost) => ({

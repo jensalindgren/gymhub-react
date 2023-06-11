@@ -1,38 +1,42 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
-import { axiosReq, axiosRes } from "../api/axiosDefaults";
+import { axiosInstance } from "../api/axiosDefaults";
 import { useHistory } from "react-router";
 import { removeTokenTimestamp, shouldRefreshToken } from "../utils/utils";
 
-export const CurrentUserContext = createContext();
-export const SetCurrentUserContext = createContext();
+const CurrentUserContext = createContext();
+const SetCurrentUserContext = createContext();
 
 export const useCurrentUser = () => useContext(CurrentUserContext);
 export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
+
+const API_ENDPOINT_USER = "/dj-rest-auth/user/";
+const API_ENDPOINT_TOKEN_REFRESH = "/dj-rest-auth/token/refresh/";
 
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const history = useHistory();
 
-  const handleMount = async () => {
+  const fetchCurrentUser = async () => {
     try {
-      const { data } = await axiosRes.get("dj-rest-auth/user/");
+      const { data } = await axiosInstance.get(API_ENDPOINT_USER);
       setCurrentUser(data);
     } catch (err) {
-      // console.log(err);
+      // Handle error appropriately (e.g., display error message to the user)
+      console.error("Failed to fetch current user:", err);
     }
   };
 
   useEffect(() => {
-    handleMount();
+    fetchCurrentUser();
   }, []);
 
   useMemo(() => {
-    axiosReq.interceptors.request.use(
+    axiosInstance.interceptors.request.use(
       async (config) => {
         if (shouldRefreshToken()) {
           try {
-            await axios.post("/dj-rest-auth/token/refresh/");
+            await axios.post(API_ENDPOINT_TOKEN_REFRESH);
           } catch (err) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
@@ -51,12 +55,12 @@ export const CurrentUserProvider = ({ children }) => {
       }
     );
 
-    axiosRes.interceptors.response.use(
+    axiosInstance.interceptors.response.use(
       (response) => response,
       async (err) => {
         if (err.response?.status === 401) {
           try {
-            await axios.post("/dj-rest-auth/token/refresh/");
+            await axios.post(API_ENDPOINT_TOKEN_REFRESH);
           } catch (err) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {

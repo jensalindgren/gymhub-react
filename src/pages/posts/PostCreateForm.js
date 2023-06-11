@@ -17,7 +17,7 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 // Hooks
 import { useHistory } from "react-router";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosInstance } from "../../api/axiosDefaults";
 // Notifications
 import { NotificationManager } from "react-notifications";
 
@@ -74,7 +74,7 @@ function PostCreateForm() {
     formData.append("image", imageInput.current.files[0]);
 
     try {
-      const { data } = await axiosReq.post("/posts/", formData);
+      const { data } = await axiosInstance.post("/posts/", formData);
       history.push(`/posts/${data.id}`);
       NotificationManager.success("Post created", "Success!");
     } catch (err) {

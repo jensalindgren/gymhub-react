@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosInstance } from "../../api/axiosDefaults";
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -35,7 +35,7 @@ const ProfileEditForm = () => {
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
-          const { data } = await axiosReq.get(`/profiles/${id}/`);
+          const { data } = await axiosInstance.get(`/profiles/${id}/`);
           const { name, content, profile_image } = data;
           setProfileData({ name, content, image: profile_image });
         } catch (err) {
@@ -67,7 +67,7 @@ const ProfileEditForm = () => {
     }
 
     try {
-      const { data } = await axiosReq.put(`/profiles/${id}/`, formData, {
+      const { data } = await axiosInstance.put(`/profiles/${id}/`, formData, {
         headers: { "Content-Type": "multipart/form-data" }, // Set content type as multipart/form-data
       });
       setCurrentUser((currentUser) => ({
@@ -82,7 +82,7 @@ const ProfileEditForm = () => {
 
   const handleDelete = async () => {
     try {
-      await axiosReq.delete(`/profiles/${id}/`);
+      await axiosInstance.delete(`/profiles/${id}/`);
       // Perform any additional cleanup or actions after deletion
       setCurrentUser(null); // Sign out the user by setting currentUser to null
       history.push("/"); // Redirect to homepage or another route

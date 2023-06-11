@@ -9,7 +9,7 @@ import styles from "../../styles/CommentCreateEditForm.module.css";
 // Components
 import Avatar from "../../components/Avatar";
 // Api
-import { axiosRes } from "../../api/axiosDefaults";
+import { axiosInstance } from "../../api/axiosDefaults";
 // Notifications
 import { NotificationManager } from "react-notifications";
 
@@ -29,7 +29,7 @@ function CommentCreateForm(props) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { data } = await axiosRes.post("/comments/", {
+      const { data } = await axiosInstance.post("/comments/", {
         content,
         post,
       });
