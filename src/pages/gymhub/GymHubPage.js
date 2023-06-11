@@ -18,10 +18,6 @@ import btnStyles from "../../styles/Button.module.css";
  
 const GymHubPage = () => {
 
-/**
- *  Redirects the user to the home page if they are logged in
- */
-
     return (
 
         <Row className={styles.Row}>

@@ -16,10 +16,10 @@ const Profile = (props) => {
 
   const { handleFollow, handleUnfollow } = useSetProfileData();
 
+  console.log('Profile:', profile); // Log the profile object
+
   return (
-    <div
-      className={`my-3 d-flex align-items-center ${mobile && "flex-column"}`}
-    >
+    <div className={`my-3 d-flex align-items-center ${mobile && "flex-column"}`}>
       <div>
         <Link className="align-self-center" to={`/profiles/${id}`}>
           <Avatar src={image} height={imageSize} />
