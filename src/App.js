@@ -12,7 +12,7 @@ import PageNotFound from "./components/PageNotFound";
 import GymHubPage from "./pages/gymhub/GymHubPage";
 import PostCreateForm from "./pages/posts/PostCreateForm";
 import PostPage from "./pages/posts/PostPage";
-import PostList from "./pages/posts/PostList";
+import PostsPage from "./pages/posts/PostsPage";
 import PostEditForm from "./pages/posts/PostEditForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
 import UsernameForm from "./pages/profiles/UsernameForm";
@@ -66,7 +66,7 @@ function App() {
                   exact
                   path="/home"
                   render={() => (
-                    <PostList
+                    <PostsPage
                       message="No results found. Adjust the search keyword."
                     />
                   )}
@@ -75,7 +75,7 @@ function App() {
                   exact
                   path="/feed"
                   render={() => (
-                    <PostList
+                    <PostsPage
                       message="No results found. Adjust the search keyword or follow a user."
                       filter={`owner__followed__owner__profile=${profile_id}&`}
                     />
@@ -85,7 +85,7 @@ function App() {
                   exact
                   path="/likes"
                   render={() => (
-                    <PostList
+                    <PostsPage
                       message="No results found. Adjust the search keyword or like a post."
                       filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
                     />
