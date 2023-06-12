@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { Navbar, Container, Nav } from 'react-bootstrap';
-import { ProfileEditDropdown } from './MoreDropdown';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import Avatar from './Avatar';
@@ -115,7 +114,7 @@ const NavBar = () => {
                 <>
 
 
-                    <Dropdown className={`ml-auto px-4 ${styles.Absolute}`} drop="center" align="center">
+                    <Dropdown className={`ml-auto px-4 ${styles.Absolute}`} drop="left" align="center">
                         <Dropdown.Toggle  className={dropdownStyles.dropdownButton}>
                           <i ></i> Profile
                         </Dropdown.Toggle>
