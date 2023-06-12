@@ -1,6 +1,10 @@
 # **_Gym Hub_**
 
-Gym Hub is a wb application that allows users to sign up and create a profile. Users can then create a workout routine/ share training images and exercises. Users can also view other users' profiles fololow them and like their posts. A user can also comment on a post to interact with other users. Take part of the Gym Hub community and share your fitness journey with others.
+Gym Hub is a wb application that allows users to sign up and create a profile. Users can then create a workout routine/ share training images and exercises. Users can also view other users' profiles follow them and like their posts. A user can also comment on a post to interact with other users. Take part of the Gym Hub community and share your fitness journey with others.
+
+You can view the live website [here](https://gym-hub.herokuapp.com/)
+
+For the backend repository click [here]( https://github.com/jensalindgren/drf-api-backend)
 
 ## Contents
 
@@ -25,7 +29,7 @@ Gym Hub is a wb application that allows users to sign up and create a profile. U
     - [Search Bar](#search-bar)
     - [Gym Hub Page](#gym-hub-page)
     - [Sign Up Page](#sign-up-page)
-    - [Login Page](#login-page)
+    - [Sign Page](#sign-page)
     - [Home Page](#home-page)
     - [Profile Page](#profile-page)
     - [Create Post Page](#create-post-page)
@@ -52,7 +56,7 @@ Gym Hub is a wb application that allows users to sign up and create a profile. U
 
 ## Objective
 
-I inteded to create a web application that allows users to create a profile and share their fitness journey with others. Users can create a workout routine and share it with others. Users can also view other users' profiles and follow them. Users can also like and comment on other users' posts.
+I was striving to create a web application that allows users to create a profile and share their fitness journey with others. Users can create a workout routine and share it with others. See if I can push my self to create a full stack application using React and Django Rest Framework.
 
 ## User Experience UX
 
@@ -69,7 +73,7 @@ I inteded to create a web application that allows users to create a profile and 
 9. Allow website staff to create a event. So the end user can view the event and be able to take part in it.
 10. Allow website staff to delete events
 11. Ensure users don't have access to staff member features
-12. 
+
 
 
 ### User Stories
@@ -101,12 +105,12 @@ See the components below:
 
 ### Typography
 
-The fonts chosen for this project have been a combination of both DM Sans, Sans-Serif and Lato. 
+The fonts chosen for this project have been a combination of both DM Sans, Sans-Serif and Lato. I have used DM Sans for the main headings and Sans-Serif for the sub headings and Lato for the body text. I have used a combination of both Sans-Serif and Lato for the navigation bar and footer. I have used a combination of both light and dark colors to give the application a modern look and feel.
 
 ### Colour Scheme
 
- I have used a combination of colours for this project. I have used a combination of both light and dark colours to give the application a modern look and feel.
-    Main colours used:
+ I have used a combination of colors for this project. I have used a combination of both light and dark colors to give the application a modern look and feel.
+    Main colors used:
     #3e40465d;
     #cfced3;
 
@@ -134,10 +138,10 @@ For this project I have used a combination of permissions to allow users to acce
 | Read       | I can view all events                                                                                                                | &check; |
 | Update     | I should be able to log into the website when I have created a valid account                                                         | &check; |
 | Update     | I should be able to log edit my own post, comments                                                                                   | &check; |
-| Update     | I can update my profile information such as my first name, last name and avatar image                                                | &check; |
+| Update     | I can update my profile information such as my first name, last name and profile image                                               | &check; |
 | Delete     | I can filter my search when looking for a post, or profile                                                                           | &check; |
 | Delete     | I can delete my own comments, post, likes, follows,                                                                                  | &check; |
-| Delete     | I can delete a account I created                                                                                                     | &check; |
+
 
 ### Staff Permissions
 
@@ -164,65 +168,99 @@ For this project I have used a combination of permissions to allow users to acce
 
 ## Existing Features
 
+The Screen shots below show the existing features of the application. They are taken with
+Chrome Dev Tools. And taken full screenshot so you can see the whole page. And the infinite scroll.
+
 ### Navigation Bar
 
-The navigation bar is a key feature of the application. It allows users to navigate to different pages of the application. The navigation bar is responsive and will collapse into a hamburger menu when the screen size is reduced. The navigation bar also displays different links depending on whether the user is logged in or not. If the user is logged in they will be able to view their profile page, create a post, view all events, log out of the application. If the user is not logged in they will be able to view the gym hub page, login page, sign up page. You have to be sign in to view your profile page, create a post, view all events, log out of the application. And more content will be available to you once you have logged in.
+The navigation bar is a key feature of the application. It allows users to navigate to different pages of the application. The navigation bar is responsive and will collapse into a hamburger menu when the screen size is reduced. The navigation bar also displays different links depending on whether the user is logged in or not. If the user is logged in they will be able to view their profile page, create a post, view all events, log out of the application. If the user is not logged in they will be able to view the gym hub page, login page, sign up page. You have to be sign in to view your profile page, create a post, view all events, log out of the application. And more content will be available to you once you have logged in. You can edit password, username, and your profile from the navbar.
+
+![NavBar](/src/assets/readme_images/navbar.png)
 
 ### Footer
 
 Footer just show the copy right of the website. Some social media links are also available in the footer.
 
+![Footer](/src/assets/readme_images/footer.png)
+
 ### Search Bar
 
-The search bar is a key feature of the application. It allows users to search for posts, profiles, events. The search bar is responsive and will collapse into a hamburger menu when the screen size is reduced.
+The search bar is a key feature of the application. It allows users to search for posts, profiles, likes. The search bar is responsive and will collapse into a hamburger menu when the screen size is reduced.
+
+![SearchBar](/src/assets/readme_images/searchbar.png)
 
 ### Gym Hub Page
 
 The gym hub page is the landing page of the application. It displays a welcome message to the user and a brief description of the application. It will give the user a choice to sign in or sign up. 
 
+![GymHub](/src/assets/readme_images/gymhub.png)
+
 ### Sign Up Page
 
 The sign up page allows users to create an account. The user will be required to enter a username and password. After the user is registered they will be redirected to the login page. And will be able to login to the application.
 
-### Login Page
+![SignUp](/src/assets/readme_images/signup.png)
+
+### Sign Page
 
 The login page allows users to login to the application. The user will be required to enter a username and password. After the user is logged in they will be redirected to the home page. And will be able to view the the application and its content.
 
+![Login](/src/assets/readme_images/login.png)
+
 ### Home Page
 
-Home page can you view all the content of the application. You can view all the posts, events, profiles. You can search for posts, events, profiles.
+Home page can you view all the content of the application. You can view all the latest posts and it has a the pages that displays content have infinite scroll.
+
+![Home](/src/assets/readme_images/home.png)
 
 ### Profile Page
 
-The profile page allows users to view their profile information. The user will be able to view their username, first name, last name, avatar image. You can follow other ueers from this page. You can also view all the posts that you have created.
+The profile page allows users to view their profile information. The user will be able to view their username, first name, last name, avatar image. You can follow other users from this page. You can also view all the posts that you have created.
+
+![Profile](/src/assets/readme_images/profile.png)
 
 ### Create Post Page
 
-The create post page allows users to create a post. The user will be required to enter a title, description, image. After the user has created a post they will be redirected to the home page. And will be able to view the post they have created.
+The create post page allows users to create a post. The user will be required to enter a title, content, image. After the user has created a post they will be redirected to the post page. And will be able to view the post they have created.
+
+![CreatePost](/src/assets/readme_images/createpost.png)
 
 ### Post Page
 
-The post page allows users to view a post. The user will be able to view the title, description, image, likes, comments. You can like a post from this page. You can also comment on a post from this page. And edit/delete it if you created the post.
+The post page allows users to view a post. The user will be able to view the title, description, image, likes, comments. You can like a post from this page. You can also comment on a post from this page. And edit/delete it if you created the post. 
+
+![Post](/src/assets/readme_images/post.png)
 
 ### Post Edit Page
 
-The post edit page allows users to edit a post. The user will be required to enter a title, description, image. After the user has edited a post they will be redirected to the home page. And will be able to view the post they have edited.
+The post edit page allows users to edit a post. The user will be required to enter a title, description, image. After the user has edited a post they will be redirected to the post page. And will be able to view the post they have edited.
+
+![PostEdit](/src/assets/readme_images/postedit.png)
+
 
 ### Comment page
 
-The comment page allows users to view a comment. The user will be able to view the comment, likes. You can like a comment from this page. And edit/delete it if you created the comment.
+The comment page is the same as the post page allows users to view a comment. The user will be able to view the comment, like. And edit/delete it if you created the comment.
+
+![Comment](/src/assets/readme_images/comment.png)
 
 ### Comment Edit Page
 
 The comment edit page allows users to edit a comment. The user will be required to enter a comment. After the user has edited a comment they will be redirected to the home page. And will be able to view the comment they have edited.
 
+![CommentEdit](/src/assets/readme_images/commentedit.png)
+
 ### Event Page
 
-The event page allows users to view a event. The user will be able to view the title, description, image, likes, comments. You can like a event from this page. You can also comment on a event from this page. And edit/delete it if you created the event.
+The event page allows users to view a event. The user will be able to view the title, description, image, And edit/delete it if you created the event. Or is staff.
+
+![Event](/src/assets/readme_images/event.png)
 
 ### Event Edit Page
 
-You can edit the event from this page. You can edit the title, description, image. After the user has edited a event they will be redirected to the home page. And will be able to view the event they have edited.
+You can edit the event from this page. You can edit the title, description, image. After the user has edited a event they will be redirected to the event page. And will be able to view the event they have edited.
+
+![EventEdit](/src/assets/readme_images/eventedit.png)
 
 ### Event Create Page
 
