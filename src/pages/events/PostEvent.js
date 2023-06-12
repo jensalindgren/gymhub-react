@@ -6,7 +6,6 @@ import Container from "react-bootstrap/Container";
 import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosInstance } from "../../api/axiosDefaults";
-import Events from "./Events";
 import PopularProfiles from "../profiles/PopularProfiles";
 
 function PostEvent() {
