@@ -18,6 +18,8 @@ import ProfilePage from "./pages/profiles/ProfilePage";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import CreateEvent from "./pages/events/CreateEvent";
+import PostEvent from "./pages/events/PostEvent";
 // API
 import './api/axiosDefaults';
 // Notifications
@@ -124,6 +126,18 @@ function App() {
                     exact
                     path="/profiles/:id/edit"
                     render={() => <ProfileEditForm />}
+                  />
+
+                  <Route 
+                    exact 
+                    path="/events/create" 
+                    render={() => <CreateEvent />} 
+                    />
+
+                <Route
+                  exact
+                  path="/events/:id/" 
+                  render={() => <PostEvent />}
                   />
 
                 <Route render={() => <PageNotFound />} />

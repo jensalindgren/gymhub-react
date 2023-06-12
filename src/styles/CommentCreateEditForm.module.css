@@ -5,16 +5,17 @@
   
 .Button {
     border: none;
-    background-color: #242a3d;
-    color: aliceblue;
+    background-color:  #555555;
+    color: white;
     border-radius: 100px;
-    padding: 4px 10px;
+    justify-content: center;
+    align-items: center;
     min-width: 75px;
     margin: 5px;
 }
   
 .Button:hover {
     cursor: pointer;
-    background-color: aliceblue;
+    background-color: white;
     color: #242a3d;
 }

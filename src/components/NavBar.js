@@ -54,7 +54,7 @@ const NavBar = () => {
           <span>Post</span>
         </i>
       </NavLink>
-      <NavLink className={styles.NavLink} to="/post/events">
+      <NavLink className={styles.NavLink} to="/events">
         <i className="fa-solid fa-bookmark">
           <span>Events</span>
         </i>
