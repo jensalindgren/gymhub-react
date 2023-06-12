@@ -116,7 +116,7 @@ const NavBar = () => {
 
                     <Dropdown className={`ml-auto px-4 ${styles.Absolute}`} drop="left" align="center">
                         <Dropdown.Toggle  className={dropdownStyles.dropdownButton}>
-                          <i ></i> Profile
+                          <i ></i> More
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                           <Dropdown.Item

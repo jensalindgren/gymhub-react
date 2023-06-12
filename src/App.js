@@ -21,6 +21,7 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import CreateEvent from "./pages/events/CreateEvent";
 import PostEvent from "./pages/events/PostEvent";
 import Events from "./pages/events/Events";
+import EventEditForm from "./pages/events/EventEditForm";
 // API
 import './api/axiosDefaults';
 // Notifications
@@ -141,6 +142,12 @@ function App() {
                     path="/events/create" 
                     render={() => <CreateEvent />} 
                     />
+
+                    <Route
+                      exact
+                      path="/events/:id/edit"
+                      render={() => <EventEditForm />}
+                      />
 
                     <Route
                       exact

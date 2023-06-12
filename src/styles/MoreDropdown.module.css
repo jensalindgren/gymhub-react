@@ -19,12 +19,12 @@
   align-items: center;
   justify-content: center;
   padding: 10px; 
-  background-color: #555555;
+  background-color: #3e40469d;
   border: none;
 }
 
 .dropdownButton:hover {
-  background-color: #3e40469d;
+  background-color: #555555;
   cursor: pointer;
 }
 

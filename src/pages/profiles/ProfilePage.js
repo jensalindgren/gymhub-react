@@ -14,7 +14,6 @@ import { useParams } from "react-router";
 import { axiosInstance } from "../../api/axiosDefaults";
 import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
 import { fetchMoreData } from "../../utils/utils";
-import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
@@ -57,13 +56,13 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
-      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image className={styles.ProfileImage} roundedCircle src={profile?.image} />
         </Col>
         <Col lg={6}>
           <h3 className="m-2">{profile?.owner}</h3>
+          {profile?.name && <p>{profile.name}</p>}
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
               <div>{profile?.posts_count}</div>
@@ -81,14 +80,14 @@ function ProfilePage() {
           {!is_owner &&
             (profile?.is_following ? (
               <Button
-                className={`${btnStyles.button} ${btnStyles.OutlineBlack}`}
+                className={`${btnStyles.button}`}
                 onClick={() => handleUnfollow(profile)}
               >
                 Unfollow
               </Button>
             ) : (
               <Button
-                className={`${btnStyles.button} ${btnStyles.Black}`}
+                className={`${btnStyles.button} `}
                 onClick={() => handleFollow(profile)}
               >
                 Follow

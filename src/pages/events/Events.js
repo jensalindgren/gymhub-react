@@ -1,97 +1,128 @@
-// import React, { useState, useEffect } from "react";
-// import { axiosInstance } from "../../api/axiosDefaults";
-// import { Link } from "react-router-dom";
-// import styles from "../../styles/Events.module.css";
-
-// const Events = () => {
-//   const [events, setEvents] = useState([]);
-
-//   useEffect(() => {
-//     const fetchEvents = async () => {
-//       try {
-//         const response = await axiosInstance.get("/events/");
-//         setEvents(response.data.results);
-//       } catch (error) {
-//         // Handle error
-//       }
-//     };
-
-//     fetchEvents();
-//   }, []);
-
-//   return (
-//     <div className={styles.Events}>
-//       <h2>Events</h2>
-//       <div className={styles.EventList}>
-//         {events.map((event) => (
-//           <Events key={event.id} {...event} />
-//         ))}
-//       </div>
-//       <Link to="/create-event">Create Event</Link>
-//     </div>
-//   );
-// };
-
-// export default Events;
-
-
-import React, { useEffect, useState} from "react";
-import Event
-
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-
-import appStyles from "../../App.module.css";
-import styles from "../../styles/PostsPage.module.css";
-import { useLocation } from "react-router";
+import React, { useState, useEffect } from "react";
 import { axiosInstance } from "../../api/axiosDefaults";
+import { Link, useHistory } from "react-router-dom";
+import { Container, Row, Col, Card, Media } from "react-bootstrap";
+import styles from "../../styles/Events.module.css";
+import PopularProfiles from "../profiles/PopularProfiles";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
-function Events( { filter = "" }) {
+const Events = () => {
   const [events, setEvents] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
-  const {pathname} = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
+  const [nextPage, setNextPage] = useState(null);
+  const currentUser = useCurrentUser();
+  const history = useHistory();
 
+  const fetchEvents = async () => {
+    try {
+      setIsLoading(true);
+      const response = await axiosInstance.get("/events/");
+      setEvents(response.data.results);
+      setNextPage(response.data.next);
+      setHasLoaded(true);
+    } catch (error) {
+      // Handle error
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchEvents = async () => {
-        try {
-          const response = await axiosInstance.get(`/events/?${filter}`);
-          setEvents(response.data.results);
-          setHasLoaded(true);
-        }
-        catch (error) {
-          // Handle error
-        }
-        };
-        setHasLoaded(false);
-        fetchEvents();
-      }, [filter, pathname]);
+    fetchEvents();
+  }, []);
 
+  const handleLoadMore = () => {
+    if (nextPage) {
+      axiosInstance
+        .get(nextPage)
+        .then((response) => {
+          setEvents([...events, ...response.data.results]);
+          setNextPage(response.data.next);
+        })
+        .catch((error) => {
+          // Handle error
+        });
+    }
+  };
+
+  const handleDelete = async (eventId) => {
+    try {
+      await axiosInstance.delete(`/events/${eventId}/`);
+      // Perform any additional actions after deletion
+    } catch (error) {
+      // Handle error
+    }
+  };
   
+  const handleEdit = (eventId) => {
+    history.push(`/events/${eventId}/edit`);
+  };
+
   return (
-    <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Popular profiles mobile</p>
-        {hasLoaded ? ( 
-          <>
-            {events.results.length  ? (
-              events.results.map((event) => (
-                <Events />
-              ): (
-                console.log("Events")
+    <Container className="h-100">
+      <Row className="py-2 p-0 p-lg-2" lg={8}>
+        <Col lg={8}>
+          <div className={styles.Events}>
+            <h2 className="text-center">Events</h2>
+            <div className={`${styles.EventList} d-flex flex-column align-items-center`}>
+              {hasLoaded ? (
+                events.length > 0 ? (
+                  <ul className={styles.EventContainer}>
+                    {events.map((event) => (
+                      <li key={event.id} className={styles.EventItem}>
+                        <Card>
+                          <Card.Body>
+                            <Media className="align-items-center justify-content-between">
+                              <div>
+                                {event.user && (
+                                  <Link to={`/profiles/${event.user.profile_id}`}>
+                                    {event.user.username}
+                                  </Link>
+                                )}
+                              </div>
+                              <div className="d-flex align-items-center">
+                                <span>{event.updated_at}</span>
+                              </div>
+                            </Media>
+                          </Card.Body>
+                          <Link to={`/events/${event.id}`}>
+                            <Card.Img src={event.image} alt={event.title} />
+                          </Link>
+                          <Card.Body>
+                            {event.title && (
+                              <Card.Title className="text-center">{event.title}</Card.Title>
+                            )}
+                            {event.description && <Card.Text>{event.description}</Card.Text>}
+                            <div className={styles.PostBar}>
+                              {/* Add your other event-related buttons and actions here */}
+                            </div>
+                          </Card.Body>
+                        </Card>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>No events found.</p>
+                )
+              ) : (
+                <p>Loading events...</p>
               )}
-            </>
-        ) : (
-          console.log("Loading")
-        )}
-      </Col>
-      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-        <p>Popular profiles for desktop</p>
-      </Col>
-    </Row>
+              {isLoading && <p>Loading more events...</p>}
+              {nextPage && (
+                <button onClick={handleLoadMore} disabled={isLoading}>
+                  Load More
+                </button>
+              )}
+            </div>
+          </div>
+        </Col>
+        <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
+          <PopularProfiles />
+        </Col>
+      </Row>
+    </Container>
   );
-}
+};
 
 export default Events;
