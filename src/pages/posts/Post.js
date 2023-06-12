@@ -12,7 +12,14 @@ import Avatar from "../../components/Avatar";
 import { axiosInstance } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 
+import { useLocation } from "react-router-dom";
+
+import Button from "react-bootstrap/Button";
+import btnStyles from "../../styles/Button.module.css";
+
 const Post = (props) => {
+
+
   const {
     id,
     owner,
@@ -127,9 +134,14 @@ const Post = (props) => {
             </OverlayTrigger>
           )}
           {likes_count}
-          <Link to={`/posts/${id}`}>
+          {/* <Link to={`/posts/${id}`}>
             <i className="far fa-comments" />
-          </Link>
+          </Link> */}
+
+          <Button variant="link" className="p-0" as={Link} to={`/posts/${id}`}>
+            <i className="far fa-comments" />
+          </Button>
+
           {comments_count}
         </div>
       </Card.Body>

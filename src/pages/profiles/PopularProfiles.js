@@ -7,6 +7,8 @@ import { useProfileData } from "../../contexts/ProfileDataContext";
 import { usePostData } from "../../contexts/PostDataContext";
 import Profile from "./Profile";
 import PopularPosts from "../posts/PopularPosts";
+import styles from "../../styles/PopularProfiles.module.css";
+
 
 const PopularProfiles = ({ mobile }) => {
   const { popularProfiles } = useProfileData();
@@ -20,11 +22,11 @@ const PopularProfiles = ({ mobile }) => {
     >
       {popularProfiles.results.length ? (
         <>
-          <h3>Most followed profiles.</h3>
+          <h3> Most followed profiles.</h3>
           {mobile ? (
             <div className="d-flex justify-content-around">
               {popularProfiles.results.slice(0, 4).map((profile) => (
-                <Profile key={profile.id} profile={profile} mobile />
+                <Profile className={styles.h3} key={profile.id} profile={profile} mobile />
               ))}
             </div>
           ) : (

@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
-import Card from 'react-bootstrap/Card';
+import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 // Components
 import Asset from "../../components/Asset";
@@ -24,9 +24,7 @@ import { NotificationManager } from "react-notifications";
 /**
  * Post create form
  * @component
- *  
  */
-
 function PostCreateForm() {
   const [errors, setErrors] = useState({});
 
@@ -47,10 +45,6 @@ function PostCreateForm() {
     });
   };
 
-  /**
-   * Handle image change
-   */
-
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
@@ -60,10 +54,6 @@ function PostCreateForm() {
       });
     }
   };
-
-  /**
-   * Submit post function
-   */
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -80,15 +70,13 @@ function PostCreateForm() {
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
-        NotificationManager.error("There was an issue creating your post", "Error");
+        NotificationManager.error(
+          "There was an issue creating your post",
+          "Error"
+        );
       }
     }
   };
-
-  /**
-   * Text fields
-   * 
-   */
 
   const textFields = (
     <div className="text-center">
@@ -131,57 +119,52 @@ function PostCreateForm() {
   );
 
   return (
-  <Form className={styles.CardBody} onSubmit={handleSubmit}>
-   <Row className={`${styles.FormBody} text-center my-auto py-2 p-md-2`}>
-          <Card.Body >
-            {image ? (
-                <>
-                  <figure>
-                    <Image className={appStyles.Image} src={image} rounded />
-                  </figure>
-                  <div>
-                    <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                      htmlFor="image-upload"
-                    >
-                      Change the image
-                    </Form.Label>
-                  </div>
-                </>
-              )
-              : (
+    <Form className={styles.CardBody} onSubmit={handleSubmit}>
+      <Row className={`${styles.FormBody} text-center my-auto py-2 p-md-2`}>
+        <Card.Body>
+          {image ? (
+            <>
+              <figure>
+                <Image className={appStyles.Image} src={image} rounded />
+              </figure>
+              <div>
                 <Form.Label
-                className="d-flex justify-content-center"
-                htmlFor="image-upload"
-              >
-                <Asset
-                  src={Upload}
-                  message="Click or tap to upload an image"
-                />
-              </Form.Label>
-            )}
+                  className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                  htmlFor="image-upload"
+                >
+                  Change the image
+                </Form.Label>
+              </div>
+            </>
+          ) : (
+            <Form.Label
+              className="d-flex justify-content-center"
+              htmlFor="image-upload"
+            >
+              <Asset src={Upload} message="Click or tap to upload an image" />
+            </Form.Label>
+          )}
 
-            <Form.Group controlId="formFile" className="mb-3">
-              <Form.Control type="file"
-                id="image-upload"
-                accept="image/"
-                onChange={handleChangeImage}
-                ref={imageInput} />
-              </Form.Group>
+          <Form.Group controlId="formFile" className="mb-3">
+            <Form.Control
+              type="file"
+              id="image-upload"
+              accept="image/"
+              onChange={handleChangeImage}
+              ref={imageInput}
+            />
+          </Form.Group>
+          {errors?.image?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+              {message}
+            </Alert>
+          ))}
 
-            {errors?.image?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
-
-        <Card.Footer className={styles.CardFooter}>{textFields}</Card.Footer>
+          <Card.Footer className={styles.CardFooter}>{textFields}</Card.Footer>
         </Card.Body>
-        </Row>
-
+      </Row>
     </Form>
   );
 }
-
 
 export default PostCreateForm;
