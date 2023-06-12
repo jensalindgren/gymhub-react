@@ -11,11 +11,13 @@ import reportWebVitals from "./reportWebVitals";
 import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import { ProfileDataProvider } from "./contexts/ProfileDataContext";
 import { PostDataProvider } from "./contexts/PostDataContext";
+import { AuthProvider } from "./contexts/AuthContext";
 
 
 ReactDOM.render(
 
     <Router>
+      <AuthProvider>
       <CurrentUserProvider>
       <ProfileDataProvider>
       <PostDataProvider>
@@ -23,6 +25,7 @@ ReactDOM.render(
         </PostDataProvider>
       </ProfileDataProvider>
       </CurrentUserProvider>
+      </AuthProvider>
     </Router>,
 
   document.getElementById("root")

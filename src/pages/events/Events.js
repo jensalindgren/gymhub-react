@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { axiosInstance } from "../../api/axiosDefaults";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Container, Row, Col, Card, Media } from "react-bootstrap";
 import styles from "../../styles/Events.module.css";
 import PopularProfiles from "../profiles/PopularProfiles";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Asset from "../../components/Asset";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [nextPage, setNextPage] = useState(null);
-  const currentUser = useCurrentUser();
-  const history = useHistory();
 
   const fetchEvents = async () => {
     try {
@@ -44,19 +42,6 @@ const Events = () => {
           // Handle error
         });
     }
-  };
-
-  const handleDelete = async (eventId) => {
-    try {
-      await axiosInstance.delete(`/events/${eventId}/`);
-      // Perform any additional actions after deletion
-    } catch (error) {
-      // Handle error
-    }
-  };
-  
-  const handleEdit = (eventId) => {
-    history.push(`/events/${eventId}/edit`);
   };
 
   return (
@@ -106,7 +91,7 @@ const Events = () => {
                   <p>No events found.</p>
                 )
               ) : (
-                <p>Loading events...</p>
+                <Asset spinner />
               )}
               {isLoading && <p>Loading more events...</p>}
               {nextPage && (
