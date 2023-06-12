@@ -1,14 +1,25 @@
+// React
 import React from 'react';
+// Router
 import { NavLink, useHistory } from 'react-router-dom';
+// Components
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import Dropdown from 'react-bootstrap/Dropdown';
+// Context
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
+// Hooks
 import Avatar from './Avatar';
+// API
 import axios from 'axios';
+// Notifications
 import { NotificationManager } from 'react-notifications';
+// Hooks
 import useClickOutsideToggle from '../hooks/useClickOutsideToggle';
+// Utils
 import { removeTokenTimestamp } from '../utils/utils';
+// Assets
 import logo from '../assets/logo.png';
+// Styles
 import styles from '../styles/NavBar.module.css';
 import dropdownStyles from '../styles/MoreDropdown.module.css';
 

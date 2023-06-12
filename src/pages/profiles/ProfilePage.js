@@ -54,6 +54,9 @@ function ProfilePage() {
     fetchData();
   }, [id, setProfileData]);
 
+  useEffect(() => {
+  }, [profile]);
+
   const mainProfile = (
     <>
       <Row noGutters className="px-3 text-center">
@@ -77,22 +80,26 @@ function ProfilePage() {
               <div>following</div>
             </Col>
           </Row>
-          {!is_owner &&
-            (profile?.is_following ? (
-              <Button
-                className={`${btnStyles.button}`}
-                onClick={() => handleUnfollow(profile)}
-              >
-                Unfollow
-              </Button>
-            ) : (
-              <Button
-                className={`${btnStyles.button} `}
-                onClick={() => handleFollow(profile)}
-              >
-                Follow
-              </Button>
-            ))}
+          {!is_owner && (
+            <>
+              {profile?.is_staff && <p>Staff</p>}
+              {profile?.is_following ? (
+                <Button
+                  className={`${btnStyles.button}`}
+                  onClick={() => handleUnfollow(profile)}
+                >
+                  Unfollow
+                </Button>
+              ) : (
+                <Button
+                  className={`${btnStyles.button} `}
+                  onClick={() => handleFollow(profile)}
+                >
+                  Follow
+                </Button>
+              )}
+            </>
+          )}
         </Col>
         {profile?.content && <Col className="p-3">{profile.content}</Col>}
       </Row>

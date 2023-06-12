@@ -1,12 +1,21 @@
+// React
 import React, { useEffect, useState } from "react";
+// React Router
 import { Link, useParams, useHistory } from "react-router-dom";
+// API
 import { axiosInstance } from "../../api/axiosDefaults";
+// Bootstrap
 import { Container, Row, Col, Card, Media, Button } from "react-bootstrap";
+// Components
 import PopularProfiles from "../profiles/PopularProfiles";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+// Styles
 import styles from "../../styles/Events.module.css";
-import Asset from "../../components/Asset";
 import btnStyles from "../../styles/Button.module.css";
+// Assets
+import Asset from "../../components/Asset";
+// Notifications
 import { NotificationManager } from "react-notifications";
 
 function PostEvent() {
@@ -23,7 +32,6 @@ function PostEvent() {
         setEvent(data);
         setLoading(false); // Update the loading state once data is fetched
       } catch (err) {
-        console.log(err);
         setLoading(false); // Handle error and update the loading state
       }
     };
@@ -32,24 +40,24 @@ function PostEvent() {
   }, [id]);
 
   const handleDelete = async (eventId) => {
-    if (currentUser && event.user && event.user.id === currentUser.id) {
+    if (currentUser && currentUser.is_staff) {
       try {
         await axiosInstance.delete(`/events/${eventId}/`);
-        // Perform any additional actions after deletion
+        NotificationManager.success("Event deleted successfully.");
         history.push("/events");
       } catch (error) {
         // Handle error
       }
     } else {
-      NotificationManager.error( "You are not authorized to delete this event.");
+      NotificationManager.error("You are not authorized to delete this event.");
     }
   };
 
   const handleEdit = (eventId) => {
-    if (currentUser && event.user && event.user.id === currentUser.id) {
+    if (currentUser && currentUser.is_staff) {
       history.push(`/events/${eventId}/edit`);
     } else {
-      NotificationManager.error( "You are not authorized to edit this event.");
+      NotificationManager.error("You are not authorized to edit this event.");
     }
   };
 
@@ -58,7 +66,7 @@ function PostEvent() {
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <PopularProfiles mobile />
         <Container>
-          {loading ? ( // Render the AssetSpinner while loading
+          {loading ? (
             <Asset spinner />
           ) : (
             <Card>
@@ -88,7 +96,7 @@ function PostEvent() {
                 {event.content && (
                   <Card.Text className={styles.EventDescription}>
                     <div className={styles.EventContent}>
-                      <strong>Content:</strong> {event.content}
+                      <strong>Info:</strong> {event.content}
                     </div>
                   </Card.Text>
                 )}
@@ -97,21 +105,24 @@ function PostEvent() {
                     <strong>Description:</strong> {event.description}
                   </Card.Text>
                 )}
-                <div className={styles.PostBar}>
-                  <Button
-                    className={`${btnStyles.button} `}
-                    onClick={() => handleDelete(event.id)}
-                  >
-                    Delete
-                  </Button>
-                  <Button
-                    className={`${btnStyles.button} `}
-                    onClick={() => handleEdit(event.id)}
-                  >
-                    Edit
-                  </Button>
-                  {/* Add your other event-related buttons and actions here */}
-                </div>
+
+                {currentUser.is_staff && (
+                  <div className={styles.PostBar}>
+                    <Button
+                      className={`${btnStyles.button} `}
+                      onClick={() => handleDelete(event.id)}
+                    >
+                      Delete
+                    </Button>
+                    <Button
+                      className={`${btnStyles.button} `}
+                      onClick={() => handleEdit(event.id)}
+                    >
+                      Edit
+                    </Button>
+                    {/* Add your other event-related buttons and actions here */}
+                  </div>
+                )}
               </Card.Body>
             </Card>
           )}

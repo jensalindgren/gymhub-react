@@ -1,16 +1,14 @@
+// React
 import React, { useEffect, useState } from "react";
-
-import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-
+// Bootstrap
+import{ Alert, Button, Col, Container, Form, Row } from "react-bootstrap";
+// React Router
 import { useHistory, useParams } from "react-router-dom";
+// API
 import { axiosInstance } from "../../api/axiosDefaults";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
+// Styles
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 

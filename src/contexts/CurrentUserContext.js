@@ -1,6 +1,9 @@
+// React Context
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
+// API
 import axios from "axios";
 import { axiosInstance } from "../api/axiosDefaults";
+// Utils
 import { useHistory } from "react-router";
 import { removeTokenTimestamp, shouldRefreshToken } from "../utils/utils";
 

@@ -1,3 +1,4 @@
+// React Context
 import React, { createContext, useState } from "react";
 
 const AuthContext = createContext();

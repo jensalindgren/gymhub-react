@@ -1,22 +1,24 @@
+// React
 import React, { useEffect, useState } from "react";
-
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-
+// Bootstrap
+import { Form, Row, Col, Container } from "react-bootstrap";
+// Components
 import Post from "./Post";
 import Asset from "../../components/Asset";
-
+// Styles
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostsPage.module.css";
+// React Router
 import { useLocation } from "react-router";
+// API
 import { axiosInstance } from "../../api/axiosDefaults";
-
+// Assets
 import NoResults from "../../assets/no-results.png";
+// Utils
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function PostsPage({ message, filter = "" }) {

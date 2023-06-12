@@ -1,19 +1,22 @@
+// React
 import React from "react";
+// Styles
 import styles from "../../styles/Post.module.css";
+// Contexts
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
+// Bootstrap
 import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-
+import Button from "react-bootstrap/Button";
+// Components
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
-import { axiosInstance } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+// API
+import { axiosInstance } from "../../api/axiosDefaults";
 
-
-import Button from "react-bootstrap/Button";
 
 const Post = (props) => {
 

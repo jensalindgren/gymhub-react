@@ -1,5 +1,8 @@
+// React
 import React from "react";
+// Router
 import { Link } from "react-router-dom";
+// Styles
 import styles from "../../styles/PostInfo.module.css";
 
 /**

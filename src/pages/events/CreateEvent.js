@@ -1,108 +1,21 @@
-// import React, { useState } from "react";
-// import { useHistory } from "react-router-dom";
-// import Button from "react-bootstrap/Button";
-// import Form from "react-bootstrap/Form";
-// import { axiosInstance } from "../../api/axiosDefaults";
-// import styles from "../../styles/CreateEvent.module.css";
-
-// const CreateEvent = () => {
-//     const [eventData, setFormData] = useState({
-//       title: "",
-//       content: "",
-//       image: "",
-//     });
-//     const history = useHistory();
-  
-//     const handleChange = (e) => {
-//       if (e.target.name === "image") {
-//         setFormData({ ...eventData, [e.target.name]: e.target.files[0] });
-//       } else {
-//         setFormData({ ...eventData, [e.target.name]: e.target.value });
-//       }
-//     };
-  
-//     const handleSubmit = async (e) => {
-//       e.preventDefault();
-//       try {
-//         const { title, content, image } = eventData;
-  
-//         // Create form data object
-//         const data = new FormData();
-//         data.append("title", title);
-//         data.append("content", content);
-//         if (image) {
-//           data.append("image", image);
-//         }
-  
-//         await axiosInstance.post("/events/", data);
-//         history.push("/events");
-//       } catch (err) {
-//         // Handle create event error
-//       }
-//     };
-  
-//     return (
-//       <div className={styles.CreateEvent}>
-//         <h2>Create Event</h2>
-//         <Form onSubmit={handleSubmit}>
-//           <Form.Group controlId="title">
-//             <Form.Label>Title</Form.Label>
-//             <Form.Control
-//               type="text"
-//               placeholder="Enter event title"
-//               name="title"
-//               value={eventData.title}
-//               onChange={handleChange}
-//               required
-//             />
-//           </Form.Group>
-  
-//           <Form.Group controlId="content">
-//             <Form.Label>Content</Form.Label>
-//             <Form.Control
-//               as="textarea"
-//               rows={5}
-//               placeholder="Enter event content"
-//               name="content"
-//               value={eventData.content}
-//               onChange={handleChange}
-//             />
-//           </Form.Group>
-  
-//           <Form.Group controlId="image">
-//             <Form.Label>Image</Form.Label>
-//             <Form.Control
-//               type="file"
-//               accept="image/*"
-//               name="image"
-//               onChange={handleChange}
-//             />
-//           </Form.Group>
-  
-//           <Button type="submit">Create</Button>
-//         </Form>
-//       </div>
-//     );
-//   };
-  
-//   export default CreateEvent;
-
+// React
 import React, { useRef, useState } from "react";
+// React Router
 import { useHistory } from "react-router";
+// API
 import { axiosInstance } from "../../api/axiosDefaults";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Alert from "react-bootstrap/Alert";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Image from "react-bootstrap/Image";
-
+// Bootstrap
+import {  Row,  Form,  Alert, Card, Image, Button, Container } from "react-bootstrap";
+// Components
 import Asset from "../../components/Asset";
+// Assets
 import Upload from "../../assets/upload.png";
-
+// Styles
+import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+// Notifications
+import { NotificationManager } from "react-notifications";
 
 const CreateEvents = () => {
   const [errors, setErrors] = useState({});
@@ -145,9 +58,11 @@ const CreateEvents = () => {
     try {
       const { data } = await axiosInstance.post("/events/", formData);
       history.push(`/events/${data.id}`);
+      NotificationManager.success("Event created", "Success!");
     } catch (error) {
       if (error.response?.status !== 401) {
         setErrors(error.response?.data);
+        NotificationManager.error("Event not created", "Error!");
       }
     }
   };
@@ -186,25 +101,21 @@ const CreateEvents = () => {
       ))}
 
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={`${btnStyles.button} `}
         onClick={() => history.goBack()}
       >
         Cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      <Button className={`${btnStyles.button} `} type="submit">
         Create
       </Button>
     </div>
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-          <Container
-            className={`${appStyles.Content} d-flex flex-column justify-content-center`}
-          >
-            <Form.Group className="text-center">
+    <Form className={styles.CardBody} onSubmit={handleSubmit}>
+      <Row className={`${styles.FormBody} text-center my-auto py-2 p-md-2`}>
+      <Card.Body>
               {image ? (
                 <>
                   <figure>
@@ -212,7 +123,7 @@ const CreateEvents = () => {
                   </figure>
                   <div>
                     <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                      className={`${btnStyles.button}  btn`}
                       htmlFor="image-upload"
                     >
                       Change the image
@@ -230,13 +141,14 @@ const CreateEvents = () => {
                   />
                 </Form.Label>
               )}
-
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                ref={imageInput}
-              />
+          <Form.Group controlId="formFile" className="mb-3">
+            <Form.Control
+              type="file"
+              id="image-upload"
+              accept="image/"
+              onChange={handleChangeImage}
+              ref={imageInput}
+            />
             </Form.Group>
             {errors?.image?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
@@ -245,11 +157,10 @@ const CreateEvents = () => {
             ))}
 
             <div className="d-md-none">{renderTextFields}</div>
-          </Container>
-        </Col>
-        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
+
+      
           <Container className={appStyles.Content}>{renderTextFields}</Container>
-        </Col>
+          </Card.Body>
       </Row>
     </Form>
   );

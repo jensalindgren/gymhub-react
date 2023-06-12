@@ -1,9 +1,23 @@
+// React
 import React, { useEffect, useRef, useState } from "react";
+// React Router
 import { useHistory, useParams } from "react-router";
+// API
 import { axiosInstance } from "../../api/axiosDefaults";
+// Notifications
 import { NotificationManager } from "react-notifications";
-import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
+// Bootstrap
+import {  Row,  Form,  Alert, Card, Image, Button } from "react-bootstrap";
+// Styles
 import styles from "../../styles/EventsEditForm.module.css";
+import btnStyles from "../../styles/Button.module.css";
+import appStyles from "../../App.module.css";
+// Assets
+import Upload from "../../assets/upload.png";
+// Components
+import Asset from "../../components/Asset";
+
+
 
 const EventsEditForm = () => {
   const [errors, setErrors] = useState({});
@@ -78,71 +92,87 @@ const EventsEditForm = () => {
     }
   };
 
+  const textFields = (
+    <div className="text-center">
+      <Form.Group>
+        <Form.Label>Title</Form.Label>
+        <Form.Control
+          type="text"
+          name="title"
+          value={title}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      <Form.Group>
+        <Form.Label>Content</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={6}
+          name="content"
+          value={content}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors?.content?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
+
+      <Button className={`${btnStyles.button} `} type="submit">
+        Edit
+      </Button>
+    </div>
+  );
+
+
   return (
-    <Container className="h-100">
-      <Row className="justify-content-center align-items-center h-100">
-        <Col xs={12} sm={8} md={6} lg={4}>
-          <Form className={styles.EventsEditForm} onSubmit={handleSubmit}>
-            <Form.Group controlId="formTitle">
-              <Form.Label>Title</Form.Label>
-              <Form.Control
-                type="text"
-                name="title"
-                value={title}
-                onChange={handleChange}
-              />
-              {errors?.title?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                  {message}
-                </Alert>
-              ))}
-            </Form.Group>
+<Form className={styles.CardBody} onSubmit={handleSubmit}>
+  <Row className={`${styles.FormBody} text-center my-auto py-2 p-md-2`}>
+    <Card.Body>
+      {image ? (
+        <>
+          <figure>
+            <Image className={appStyles.Image} src={image} rounded />
+          </figure>
 
-            <Form.Group controlId="formContent">
-              <Form.Label>Content</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={6}
-                name="content"
-                value={content}
-                onChange={handleChange}
-              />
-              {errors?.content?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                  {message}
-                </Alert>
-              ))}
-            </Form.Group>
+        </>
+      ) : (
+        <Form.Label
+          className="d-flex justify-content-center"
+          htmlFor="image-upload"
+        >
+          <Asset src={Upload} message="Click or tap to upload an image" />
+        </Form.Label>
+      )}
 
-            <Form.Group controlId="formImage">
-              <Form.Label>Image</Form.Label>
-              {image ? (
-                <img src={image} alt="Event" className={styles.EventImage} />
-              ) : (
-                <Form.Label className={styles.UploadLabel}>
-                  <span>Click or tap to upload an image</span>
-                  <Form.Control
-                    type="file"
-                    accept="image/*"
-                    onChange={handleChangeImage}
-                    ref={imageInput}
-                  />
-                </Form.Label>
-              )}
-              {errors?.image?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                  {message}
-                </Alert>
-              ))}
-            </Form.Group>
+      <Form.Group controlId="formFile" className="mb-3">
+        <Form.Control
+          type="file"
+          id="image-upload"
+          accept="image/"
+          onChange={handleChangeImage}
+          ref={imageInput}
+        />
+      </Form.Group>
+      {errors?.image?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
-            <Button type="submit" className="w-100">
-              Edit Event
-            </Button>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+      <Card.Footer className={styles.CardFooter}>
+      {textFields}
+      </Card.Footer>
+    </Card.Body>
+  </Row>
+</Form>
   );
 };
 

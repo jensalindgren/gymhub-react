@@ -1,10 +1,16 @@
+// React
 import React, { useState, useEffect } from "react";
+// API
 import { axiosInstance } from "../../api/axiosDefaults";
+// React Router
 import { Link } from "react-router-dom";
+// Bootstrap
 import { Container, Row, Col, Card, Media } from "react-bootstrap";
+// Styles
 import styles from "../../styles/Events.module.css";
-import PopularProfiles from "../profiles/PopularProfiles";
+// Components
 import Asset from "../../components/Asset";
+import PopularProfiles from "../profiles/PopularProfiles";
 
 const Events = () => {
   const [events, setEvents] = useState([]);

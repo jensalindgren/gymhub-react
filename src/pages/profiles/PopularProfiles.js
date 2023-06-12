@@ -1,12 +1,18 @@
-
+// React
 import React from "react";
+// Bootstrap
 import { Container } from "react-bootstrap";
+// Styles
 import appStyles from "../../App.module.css";
+// Components
 import Asset from "../../components/Asset";
+// Contexts
 import { useProfileData } from "../../contexts/ProfileDataContext";
 import { usePostData } from "../../contexts/PostDataContext";
+// Components
 import Profile from "./Profile";
 import PopularPosts from "../posts/PopularPosts";
+// Styles
 import styles from "../../styles/PopularProfiles.module.css";
 
 

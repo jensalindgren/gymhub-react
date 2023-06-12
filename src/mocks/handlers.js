@@ -1,4 +1,7 @@
+// Rest
 import { rest } from "msw";
+
+// Mock Service Worker (MSW) handlers
 
 const baseURL = "https://drf-api-backend.herokuapp.com/";
 

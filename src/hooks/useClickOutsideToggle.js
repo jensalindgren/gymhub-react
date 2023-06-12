@@ -1,4 +1,7 @@
+// React
 import { useEffect, useRef, useState } from "react";
+
+// Custom hook for toggling a component when clicking outside of it
 
 const useClickOutsideToggle = () => {
   const [expanded, setExpanded] = useState(false);

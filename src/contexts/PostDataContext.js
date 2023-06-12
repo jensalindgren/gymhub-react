@@ -1,5 +1,8 @@
+// React Context for Post Data
 import { createContext, useContext, useEffect, useState } from "react";
 import { axiosInstance } from "../api/axiosDefaults";
+
+// Fetch popular posts
 
 const PostDataContext = createContext();
 const SetPostDataContext = createContext();
