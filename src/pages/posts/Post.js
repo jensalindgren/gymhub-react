@@ -12,10 +12,8 @@ import Avatar from "../../components/Avatar";
 import { axiosInstance } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 
-import { useLocation } from "react-router-dom";
 
 import Button from "react-bootstrap/Button";
-import btnStyles from "../../styles/Button.module.css";
 
 const Post = (props) => {
 
