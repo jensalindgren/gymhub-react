@@ -36,6 +36,7 @@ function App() {
   const currentUser = useCurrentUser();
   const profile_id = currentUser?.profile_id || "";
   const location = useLocation();
+  const is_staff = currentUser?.is_staff;
 
   let gymPage = true;
   let mainSite = false;
@@ -136,12 +137,13 @@ function App() {
                     render={() => <Events />}
                     />
 
-
+                {is_staff && (
                   <Route 
                     exact 
                     path="/events/create" 
                     render={() => <CreateEvent />} 
                     />
+                  )}
 
                     <Route
                       exact

@@ -30,7 +30,9 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     fetchCurrentUser();
   }, []);
-
+  /**
+   * axios request interceptors to check local storage for jwt refresh tokens
+   */
   useMemo(() => {
     axiosInstance.interceptors.request.use(
       async (config) => {

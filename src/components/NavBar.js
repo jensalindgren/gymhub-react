@@ -44,6 +44,14 @@ const NavBar = () => {
 
   const loggedInIcons = (
     <>
+          {currentUser && currentUser.is_staff && (
+        <NavLink className={styles.NavLink} to="/events/create">
+          <i className={styles.i} class="fa-solid fa-plus-square">
+            <span>Post Event</span>
+          </i>
+        </NavLink>
+              )}
+
       <NavLink className={styles.NavLink} to="/feed">
         <i className={styles.i} class="fa-solid fa-hashtag">
           <span>Feed</span>
