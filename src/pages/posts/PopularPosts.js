@@ -9,7 +9,7 @@ import styles from "../../styles/PostInfo.module.css";
 
 const Post = (props) => {
   const { post, mobile } = props;
-  const { id, title, image } = post;
+  const { id, image } = post;
 
   return (
     <div className={`my-3 d-flex align-items-center ${mobile && "flex-column"}`}>
@@ -23,7 +23,6 @@ const Post = (props) => {
                 className={styles.postImage}
               />
             )}
-            <h5 className={`ml-2 ${styles.postTitle}`}>{title}</h5>
           </div>
         </Link>
       </div>

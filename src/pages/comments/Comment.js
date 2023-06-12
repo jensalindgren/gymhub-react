@@ -43,7 +43,6 @@ const Comment = (props) => {
   
     const handleDelete = async () => {
         try {
-          console.log("Deleting comment with ID:", id); // Log the ID before deletion
           await axiosInstance.delete(`/comments/${id}/`);
           // Delay the state update for a short period
           await new Promise(resolve => setTimeout(resolve, 500));

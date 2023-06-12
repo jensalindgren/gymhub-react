@@ -18,7 +18,6 @@ export const ProfileDataProvider = ({ children }) => {
   const currentUser = useCurrentUser();
 
   const handleFollow = async (clickedProfile) => {
-    console.log("Clicked Profile (handleFollow):", clickedProfile);
     try {
       const { data } = await axiosInstance.post("/followers/", {
         followed: clickedProfile.id,
@@ -42,12 +41,10 @@ export const ProfileDataProvider = ({ children }) => {
       });
     } catch (err) {
       // Handle error appropriately (e.g., display error message to the user)
-      console.error("Failed to follow:", err);
     }
   };
 
   const handleUnfollow = async (clickedProfile) => {
-    console.log("Clicked Profile (handleUnfollow):", clickedProfile);
     try {
       await axiosInstance.delete(`/followers/${clickedProfile.following_id}/`);
 
@@ -69,7 +66,6 @@ export const ProfileDataProvider = ({ children }) => {
       });
     } catch (err) {
       // Handle error appropriately (e.g., display error message to the user)
-      console.error("Failed to unfollow:", err);
     }
   };
 

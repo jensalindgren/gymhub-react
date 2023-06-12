@@ -110,19 +110,19 @@ const ProfileEditForm = () => {
         </Alert>
       ))}
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={`${btnStyles.button}`}
         onClick={() => history.goBack()}
       >
-        cancel
+        Cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        save
+      <Button className={`${btnStyles.button}`} type="submit">
+        Save
       </Button>
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Red}`}
+        className={`${btnStyles.button}`}
         onClick={handleDelete}
       >
-        delete profile
+        Delete profile
       </Button>
     </>
   );
@@ -145,7 +145,7 @@ const ProfileEditForm = () => {
               ))}
               <div>
                 <Form.Label
-                  className={`${btnStyles.Button} ${btnStyles.Blue} btn my-auto`}
+                  className={`${btnStyles.button}  btn my-auto`}
                   htmlFor="image-upload"
                 >
                   Change the image
