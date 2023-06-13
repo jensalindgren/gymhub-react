@@ -21,7 +21,7 @@ The backend is hosted on [Heroku](https://www.heroku.com/) Just like the fronten
   - [Components](#components)
   - [Design Choices](#design-choices)
     - [Typography](#typography)
-    - [Colour Scheme](#colour-scheme)
+    - [Color Scheme](#color-scheme)
   - [Project Management](#project-management)
     - [GitHub Project Board](#github-project-board)
   - [Permissions](#permissions)
@@ -62,10 +62,13 @@ The backend is hosted on [Heroku](https://www.heroku.com/) Just like the fronten
     - [LightHouse Testing](#lighthouse-testing)
     - [Responsiveness Testing](#responsiveness-testing)
     - [Manual Testing](#manual-testing)
+    - [Bugs](#bugs)
+    - [Features Left to Implement](#features-left-to-implement)
     - [Deployment](#deployment)
   - [Credits](#credits)
     - [Media and Content](#media-and-content)
     - [Acknowledgements](#acknowledgements)
+    - [Disclaimer](#disclaimer)
 
 ## Objective
 
@@ -86,8 +89,6 @@ I was striving to create a web application that allows users to create a profile
 9. Allow website staff to create a event. So the end user can view the event and be able to take part in it.
 10. Allow website staff to delete events
 11. Ensure users don't have access to staff member features
-
-
 
 ### User Stories
 
@@ -114,13 +115,21 @@ This project is using React which allows for the re-use of components throughout
 
 See the components below:
 
+- App.js [here](src/App.js)
+- Navbar.js [here](src/components/Navbar.js)
+- Footer.js [here](src/components/Footer.js)
+- Assets.js [here](src/components/Assets.js)
+- Footer.js [here](src/components/Footer.js)
+- MoreDropdown.js [here](src/components/MoreDropdown.js)
+- PageNotFound.js [here](src/components/PageNotFound.js)
+
 ## Design Choices
 
 ### Typography
 
 The fonts chosen for this project have been a combination of both DM Sans, Sans-Serif and Lato. I have used DM Sans for the main headings and Sans-Serif for the sub headings and Lato for the body text. I have used a combination of both Sans-Serif and Lato for the navigation bar and footer. I have used a combination of both light and dark colors to give the application a modern look and feel.
 
-### Colour Scheme
+### Color Scheme
 
  I have used a combination of colors for this project. I have used a combination of both light and dark colors to give the application a modern look and feel.
     Main colors used:
@@ -128,6 +137,13 @@ The fonts chosen for this project have been a combination of both DM Sans, Sans-
     #cfced3;
 
 ## Project Management
+
+I have used a combination of tools to manage this project. I have used a GitHub project board to manage the project and keep track of my progress. I started by coding the backend of the application using Django Rest Framework. Once I had the backend completed I started to work on the frontend of the application using React. I have used a combination of Git and GitHub to manage the project. I have used Git to commit changes to the project and GitHub to store the project remotely. I have used Visual Studio Code as my IDE to develop the project.
+
+Hade some problem with the backend. I was not able to get the backend to work with the frontend. So I had to start over again. But I never gave up and I was able to get the backend to work with the frontend.
+
+![GitHub Project Board](src/assets/readme_images/story.png)
+![GitHub Project Board](src/assets/readme_images/story_2.png)
 
 ### GitHub Project Board
 
@@ -178,6 +194,7 @@ For this project I have used a combination of permissions to allow users to acce
 | Delete     | I can filter my search when looking for a post, or profile                                                                           | &check; |
 | Delete     | I can delete my own comments, post, likes, follows,                                                                                  | &check; |
 
+[Back to top](#table-of-contents)
 
 ## Existing Features
 
@@ -317,12 +334,14 @@ The change profile page allows users to change their profile information. The us
 
 ![ChangeProfile](/src/assets/readme_images/bio.png)
 
-### Notifications 
+### Notifications
 
 As a user you will be able to view notifications. You will be able to view notifications when you perform a action. Such as failing to login in or out. The color will be red. If you perform a action that is not successful. The color will be green. When you perform a action that is successful. It will have a small timer that will disappear after a few seconds. Or you can click the close button to close it.
 
 ![Notifications](/src/assets/readme_images/error.png)
 ![Notifications](/src/assets/readme_images/check.png)
+
+[Back to top](#table-of-contents)
 
 ## Technologies Used
 
@@ -410,7 +429,6 @@ I put the website through the [LightHouse](https://developers.google.com/web/too
 - Nest Hub
 - Nest Hub Max
 
-
 ### Manual Testing
 
 | Page                 | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities. And Possible outcomes on sites below.      | Pass/Fail |
@@ -454,6 +472,25 @@ Chrome | Firefox | Safari | Opera | Edge
 I feel a bit disappointed that I couldn't get the follow and unfollow buttons to work properly.
 I will have to come back to this in the future and try to fix it. Other than that I'm happy with the outcome of the project.
 
+### Bugs
+
+- I had a problem with the follow and unfollow buttons. See if I can get it to work properly. It works on some accounts but not on others. I get a 400 or 500 error depends on the user. Some times it works and some times it doesn't. I will have to come back to this in the future and try to fix it.
+
+### Features Left to Implement
+
+- See if I can get the follow and unfollow buttons to work properly.
+- Add a feature where you can upvote and downvote posts and comments.
+- Add so you can upvote and downvote events.
+- Add more features to the profile page.
+- Better search functionality.
+- Better performance.
+- More animations.
+- More staff features.
+- Better overall design.
+- Smoother transitions.
+
+[Back to top](#table-of-contents)
+
 ### Deployment
 
 The project was deployed to [Heroku](https://www.heroku.com). The deployment process is as follows:
@@ -463,11 +500,9 @@ Firstly we need to create a new repository in [GitHub](https://github.com/) wher
 - Navigate to [GitHub](https://github.com/)
 - Create a new repository with no template
 
-
 Once you've created your new empty repository, we need to pull this repository down onto our local machine. Throughout the course I have used [VSCode](https://code.visualstudio.com/) to create and manage my projects instead of GitPod so I will be demonstrating the process with [VSCode](https://code.visualstudio.com/).
 
 - Copy either the HTTPS or SSH URL that has just been generated by [GitHub](https://github.com/)
-
 
 Now we need to open up a command prompt to pull this empty repository down onto our machine
 
@@ -509,7 +544,6 @@ You can either choose **Enable Automatic Deploys** or **Deploy Branch**. I chose
 
 Your new [React](https://reactjs.org/) application is now successfully deployed to [Heroku](https://www.heroku.com)
 
-
 ## Credits
 
 This is last project for my Code Institute Full Stack Web Development course. I have used the knowledge I have gained from the course to create this project. Im so happy I started this journey and I'm looking forward to the future.
@@ -525,3 +559,11 @@ All the images used in this project were taken from my own personal collection. 
 
 - I would like to thank my family for all the support they have given me throughout this course.
 - My soon to be wife for all the support and help she has given me throughout this course.
+
+Big thanks to all the tutors at Code Institute for all the help and support they have given me throughout this course.
+
+### Disclaimer
+
+The content of this website is for educational purposes only.
+
+[Back to top](#table-of-contents)
