@@ -1,10 +1,14 @@
 # **_Gym Hub_**
 
+![Front](/src/assets/readme_images/front.png)
+
 Gym Hub is a wb application that allows users to sign up and create a profile. Users can then create a workout routine/ share training images and exercises. Users can also view other users' profiles follow them and like their posts. A user can also comment on a post to interact with other users. Take part of the Gym Hub community and share your fitness journey with others.
 
-You can view the live website [here](https://gym-hub.herokuapp.com/)
+You can view the live website [here](https://gymhub-app.herokuapp.com/)
 
 For the backend repository click [here]( https://github.com/jensalindgren/drf-api-backend)
+
+The backend is hosted on [Heroku](https://www.heroku.com/) Just like the frontend. [here](https://drf-api-backend.herokuapp.com/)
 
 ## Contents
 
@@ -34,6 +38,7 @@ For the backend repository click [here]( https://github.com/jensalindgren/drf-ap
     - [Profile Page](#profile-page)
     - [Create Post Page](#create-post-page)
     - [Post Page](#post-page)
+    - [Feed Page](#feed-page)
     - [Post Edit Page](#post-edit-page)
     - [Comment page](#comment-page)
     - [Comment Edit Page](#comment-edit-page)
@@ -41,6 +46,11 @@ For the backend repository click [here]( https://github.com/jensalindgren/drf-ap
     - [Event Edit Page](#event-edit-page)
     - [Event Create Page](#event-create-page)
     - [Page Not Found](#page-not-found)
+    - [Like Page](#like-page)
+    - [Change Password Page](#change-password-page)
+    - [Change Username Page](#change-username-page)
+    - [Change Profile Page](#change-profile-page)
+    - [Notifications](#notifications)
   - [Technologies Used](#technologies-used)
     - [Languages Used](#languages-used)
     - [Frameworks, Libraries \& Programs Used](#frameworks-libraries--programs-used)
@@ -48,11 +58,14 @@ For the backend repository click [here]( https://github.com/jensalindgren/drf-ap
     - [Other Resources Used](#other-resources-used)
   - [Testing](#testing)
     - [Code Validation](#code-validation)
+    - [Accessibility Testing](#accessibility-testing)
+    - [LightHouse Testing](#lighthouse-testing)
     - [Responsiveness Testing](#responsiveness-testing)
     - [Manual Testing](#manual-testing)
     - [Deployment](#deployment)
   - [Credits](#credits)
-    - [`npm run build` fails to minify](#npm-run-build-fails-to-minify)
+    - [Media and Content](#media-and-content)
+    - [Acknowledgements](#acknowledgements)
 
 ## Objective
 
@@ -209,7 +222,7 @@ The login page allows users to login to the application. The user will be requir
 
 ### Home Page
 
-Home page can you view all the content of the application. You can view all the latest posts and it has a the pages that displays content have infinite scroll.
+Home page can you view all the content of the application. You can view all the latest posts and it has a the pages that displays content have infinite scroll. You have a search bar so you look after a title. A profile.
 
 ![Home](/src/assets/readme_images/home.png)
 
@@ -227,9 +240,15 @@ The create post page allows users to create a post. The user will be required to
 
 ### Post Page
 
-The post page allows users to view a post. The user will be able to view the title, description, image, likes, comments. You can like a post from this page. You can also comment on a post from this page. And edit/delete it if you created the post. 
+The post page allows users to view a post. The user will be able to view the title, description, image, likes, comments. You can like a post from this page. You can also comment on a post from this page. And edit/delete it if you created the post.
 
 ![Post](/src/assets/readme_images/post.png)
+
+### Feed Page
+
+The feed page is for the profiles you have followed. All the latest content form you favorite profiles will be displayed here. You can like a post from this page. You can also comment on a post from this page. And like.
+
+![Feed](/src/assets/readme_images/feed.png)
 
 ### Post Edit Page
 
@@ -266,9 +285,44 @@ You can edit the event from this page. You can edit the title, description, imag
 
 If you are a staff member you can create a event from this page. You can create the title, description, image. After the user has created a event they will be redirected to the home page. And will be able to view the event they have created.
 
+![EventCreate](/src/assets/readme_images/eventcreate.png)
+
 ### Page Not Found
 
 A 404 page is displayed if the user tries to access a page that does not exist.
+
+![404](/src/assets/readme_images/404.png)
+
+### Like Page
+
+The like page allows users to view all the favorite post the like. You can search for a post that you have liked. Just type in title or profile name.
+
+![Like](/src/assets/readme_images/likes.png)
+
+### Change Password Page
+
+The change password page allows users to change their password. The user will be required to enter a new password. After the user has changed their password they will be redirected to the home page. And will be able to view the application and its content.
+
+![ChangePassword](/src/assets/readme_images/password.png)
+
+### Change Username Page
+
+The change username page allows users to change their username. The user will be required to enter a new username. After the user has changed their username they will be redirected to the home page. And will be able to view the application and its content.
+
+![ChangeUsername](/src/assets/readme_images/name.png)
+
+### Change Profile Page
+
+The change profile page allows users to change their profile information. The user will be required to enter a name,  som information and profile image. After the user has changed their profile information they will be redirected to the profile page. And will be able to view the application and its content.
+
+![ChangeProfile](/src/assets/readme_images/bio.png)
+
+### Notifications 
+
+As a user you will be able to view notifications. You will be able to view notifications when you perform a action. Such as failing to login in or out. The color will be red. If you perform a action that is not successful. The color will be green. When you perform a action that is successful. It will have a small timer that will disappear after a few seconds. Or you can click the close button to close it.
+
+![Notifications](/src/assets/readme_images/error.png)
+![Notifications](/src/assets/readme_images/check.png)
 
 ## Technologies Used
 
@@ -323,6 +377,21 @@ A 404 page is displayed if the user tries to access a page that does not exist.
 
 - [JSHint Validation](https://jshint.com/) - Used to validate JavaScript code.
 
+### Accessibility Testing
+
+I put the website through the to test if there was any conflicting contrast issues with the colours selected but found no errors.
+
+![Contrast](/src/assets/readme_images/color.png)
+
+### LightHouse Testing
+
+I put the website through the [LightHouse](https://developers.google.com/web/tools/lighthouse) testing tool in Google Chrome DevTools to test the performance, accessibility, best practices and SEO of the website. I can see that I need to improve on the performance of the website. The big pictures are causing the website to load slowly. I will need to compress the images to improve the performance of the website in the future.
+
+![LightHouse](/src/assets/readme_images/1.png)
+![LightHouse](/src/assets/readme_images/2.png)
+![LightHouse](/src/assets/readme_images/3.png)
+![LightHouse](/src/assets/readme_images/4.png)
+
 ### Responsiveness Testing
   I've conducted responsive testing for all pages for the following devices.
 
@@ -344,54 +413,115 @@ A 404 page is displayed if the user tries to access a page that does not exist.
 
 ### Manual Testing
 
-| Page                 | Expected Result                                                                                                   | Pass/Fail |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------- | --------- |
+| Page                 | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities. And Possible outcomes on sites below.      | Pass/Fail |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------| --------- |
+| Home                 | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Login                | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Sign in              | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Sign out             | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Gym Hub              | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Register             | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Profile              | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Profile Edit         | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Profile Password     | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Profile Username     | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Profile Follow       | Having some problem with following some accounts I get a 400 or 500 error depends on the user. Some times it works  | Fail      |
+| Profile Unfollow     | Having some problem with unfollowing some accounts I get a 400 or 500 error depends on the user. Some times it works| Fail      |
+| Feed                 | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Post                 | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Post Edit            | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Post Delete          | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Post Like            | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Post Unlike          | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Post Comment         | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Post Comment Edit    | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Post Comment Delete  | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Event                | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Event Edit           | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Event Delete         | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Comments             | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Comments Edit        | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Comments Delete      | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Search Bars          | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Navbar               | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Footer               | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| 404 Page             | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+| Logo                 | Tested Links, Buttons, Text, Fields, All the basic Crud functionalities.                                            | Pass      |
+
+The website has been tested on the following browsers:
+Chrome | Firefox | Safari | Opera | Edge
+
+I feel a bit disappointed that I couldn't get the follow and unfollow buttons to work properly.
+I will have to come back to this in the future and try to fix it. Other than that I'm happy with the outcome of the project.
 
 ### Deployment
 
 The project was deployed to [Heroku](https://www.heroku.com). The deployment process is as follows:
 
-1. Create a [Heroku](https://www.heroku.com) account.
-2. Create a new app and give it a name and select the region.
-3. Click on the deploy tab and select GitHub as the deployment method.
-4. Search for the repository you want to deploy from and click connect.
-5. Click on the settings tab and click on the reveal config vars button.
-6. Add the following config vars:
-7. Click on the deploy tab and scroll down to manual deploy and click on the deploy branch button.
-8. Once the build is complete click on the view button to view the deployed website.
-9. The website has now been deployed.
+Firstly we need to create a new repository in [GitHub](https://github.com/) where our project files will be located
 
-10. To clone the repository to your local machine follow these steps:
-11. Click on the code button.
-12. Copy either the HTTPS or SSH URL that has just been generated by [GitHub](
-13. Open Git Bash.
-14. Change the current working directory to the location where you want the cloned directory to be made.
-16. Type git clone, and then paste the URL you copied earlier.
-17. Press Enter. Your local clone will be created.
-    
-18. To run the project locally follow these steps:
-19. Open Git Bash.
-20. Change the current working directory to the location where you cloned the repository.
-21. Type npm install to install all the required dependencies.
-22. Type npm start to run the project locally.
-23. The project will now run locally on your machine.
-    
-24. To deploy the project to GitHub pages follow these steps:
-25. Create a [GitHub](
-26. Click on the code button.
-27. Copy either the HTTPS or SSH URL that has just been generated by [GitHub](
-28. Open Git Bash.
-29. Change the current working directory to the location where you cloned the repository.
-30. Type git remote add origin, and then paste the URL you copied earlier.
-31. Press Enter. Your local clone will now be connected to the GitHub repository.
-32. Type git push -u origin main to push the project to GitHub.
-33. The project will now be deployed to GitHub pages.
-    
+- Navigate to [GitHub](https://github.com/)
+- Create a new repository with no template
+
+
+Once you've created your new empty repository, we need to pull this repository down onto our local machine. Throughout the course I have used [VSCode](https://code.visualstudio.com/) to create and manage my projects instead of GitPod so I will be demonstrating the process with [VSCode](https://code.visualstudio.com/).
+
+- Copy either the HTTPS or SSH URL that has just been generated by [GitHub](https://github.com/)
+
+
+Now we need to open up a command prompt to pull this empty repository down onto our machine
+
+- Open a CMD
+- CD to a location you wish to store this project
+
+Now we need to initialize this project as a [React](https://reactjs.org/) project
+
+- Open up a new [GitBash](<https://en.wikipedia.org/wiki/Bash_(Unix_shell)>) terminal within the project
+- Type in **npx create-react-app . --use-npm**
+
+Once completed, you can test your new [React](https://reactjs.org/) application is working by typing **npm start** in the terminal
+
+Now we can push our new project to our [GitHub](https://github.com/) repository
+
+- **git add .**
+- **git commit -m "Initial commit"**
+- **git push**
+
+Now it's time to deploy our new project live for everyone to see on [Heroku](https://www.heroku.com)
+
+- Navigate to [Heroku](https://www.heroku.com)
+- Click **New app**
+- Fill in the relevant information
+- Click **Create app** once you are happy
+
+Now we need to link our [Heroku](https://www.heroku.com) application with our [GitHub](https://github.com/) project
+
+- Click the **Deploy** tab
+- Choose **GitHub**
+- Search for your repository
+- Once found, click **Connect**
+
+Finally, we can deploy our connected projected for everyone to see.
+
+You can either choose **Enable Automatic Deploys** or **Deploy Branch**. I chose to deploy my application manually when I was ready instead of automatic deployments
+
+- Click **Deploy Branch** and wait for it to build
+
+Your new [React](https://reactjs.org/) application is now successfully deployed to [Heroku](https://www.heroku.com)
+
 
 ## Credits
 
+This is last project for my Code Institute Full Stack Web Development course. I have used the knowledge I have gained from the course to create this project. Im so happy I started this journey and I'm looking forward to the future.
 
+### Media and Content
 
-### `npm run build` fails to minify
+All the images used in this project were taken from my own personal collection. Fom my own company website and social media accounts. [here](https://swedenathletes.com/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Acknowledgements
+
+- I would like to thank my mentor for all the help and support he has given me throughout this course.
+  Marcel is a great mentor and I'm so happy I got him. He has helped me a lot and I'm very grateful for that.
+
+- I would like to thank my family for all the support they have given me throughout this course.
+- My soon to be wife for all the support and help she has given me throughout this course.
